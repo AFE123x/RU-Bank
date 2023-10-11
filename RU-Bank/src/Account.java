@@ -14,4 +14,14 @@ public abstract class Account implements Comparable<Account> {
         // TODO: 
         return 0;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Account){
+            Account temp = (Account)obj;
+            return this.compareTo(temp) == 0;
+        }
+        
+            return false;
+        
+     }
 }
