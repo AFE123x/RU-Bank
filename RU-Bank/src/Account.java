@@ -8,6 +8,12 @@ public abstract class Account implements Comparable<Account> {
         this.holder = holder;
         this.balance = balance;
     }
+    public void deposit(double amount){
+        balance += amount;
+    }
+    public double getbalance(){
+        return balance;
+    }
 
     @Override
     public int compareTo(Account otherAccount) {
@@ -24,4 +30,5 @@ public abstract class Account implements Comparable<Account> {
             return false;
         
      }
+
 }
