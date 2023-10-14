@@ -14,6 +14,18 @@ public class CollegeChecking extends Checking {
         super(holder, balance);
         this.campus = Campus.valueOf(campusCode);
     }
+    public static CollegeChecking makeCollegeChecking(String [] input){
+        try {
+            Profile profile = Profile.makeProfile(input);
+            
+            double tempbalance = !input[0].equals("C") ? Double.parseDouble(input[5]) : null;
+            String tempcampusCode = input[0].equals("O") ? input[6] : null;
+            return new CollegeChecking(profile, tempbalance, tempcampusCode);
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
     @Override
     public double monthlyInterest() {

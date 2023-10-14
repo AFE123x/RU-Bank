@@ -8,6 +8,14 @@ public class Profile implements Comparable<Profile>{
         this.dob = dob;
 
     }
+    public static Profile makeProfile(String [] input){
+        try {
+            Date dob = Date.makeDate(input[4]);
+            return new Profile(input[2], input[3], dob);
+        } catch (Exception e) {
+            return null;
+        }
+    }
     public String getFname(){
         return fname;
     }

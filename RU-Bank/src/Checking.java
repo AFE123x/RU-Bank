@@ -5,6 +5,16 @@ public class Checking extends Account {
     public Checking(Profile holder, double balance) {
         super(holder, balance);
     }
+    public static Checking makeChecking(String [] input){
+        try {
+            Profile profile = Profile.makeProfile(input);
+            double balance = !input[0].equals("C") ? Double.parseDouble(input[4]) : null;
+            return new Checking(profile,balance);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 
     @Override
     public double monthlyInterest() {

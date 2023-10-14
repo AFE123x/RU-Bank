@@ -78,10 +78,6 @@ public class Date implements Comparable<Date>{
 
         Calendar currCalendar = Calendar.getInstance();
         Date currDate = new Date(currCalendar.get(Calendar.YEAR), currCalendar.get(Calendar.MONTH) + 1, currCalendar.get(Calendar.DAY_OF_MONTH));
-        if (this.compareTo(currDate) < 0) {
-            System.out.println(toString() + ": Event date must be a future date");
-            return false;
-        }
 
         currCalendar.add(Calendar.MONTH, 6);
         Date sixMonthsLater = new Date(currCalendar.get(Calendar.YEAR), currCalendar.get(Calendar.MONTH) + 1, currCalendar.get(Calendar.DAY_OF_MONTH));

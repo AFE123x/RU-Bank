@@ -94,10 +94,13 @@ public class AccountDatabase {
         if(account != null){
             for(int i = 0; i < numAcct; i++){
                 if(account.equals(accounts[i])){
-                    if(accounts[i].getbalance() > )
+                    if(accounts[i].getbalance() > 0){
+
+                    }
                 }
             }
         }
+        return false;
     } //false if insufficient fund
     public void deposit(Account account){
         for(int i = 0; i < numAcct; i++){
