@@ -7,7 +7,7 @@ public class Savings extends Account{
     private static final double INTEREST_RATE = 0.04;
 
     /** Bonus interest rate for loyal customers */
-    private static final double LOYALTY_BONUS = 0.0025;
+    protected static final double LOYALTY_BONUS = 0.0025;
 
     /** Monthly fee if the required balance is less than $500*/
     private static final double FEE = 25;
@@ -49,6 +49,15 @@ public class Savings extends Account{
     @Override
     public double monthlyFee() {
         return balance >= MIN_BALANCE_REQUIRED ? 0 : FEE;     
+    }
+
+    /**
+    * Retrieves the loyalty bonus associated with the Savings account.
+    * 
+    * @return the loyal customer bonus as a percentage
+    */
+    protected double getLoyaltyBonus() {
+        return LOYALTY_BONUS;
     }
 
     /**
