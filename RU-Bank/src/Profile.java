@@ -67,7 +67,10 @@ public class Profile implements Comparable<Profile> {
     public Date getDob() {
         return dob;
     }
-
+    public String toString(){
+        //John Doe 2/19/2000
+        return fname + " " + lname + " " + dob.toString();
+    }
     /**
      * Compares the current profile to another profile object. 
      * The method currently returns 0, indicating that profiles are treated as equal. 

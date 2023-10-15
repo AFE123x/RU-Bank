@@ -51,10 +51,14 @@ public class AccountDatabase {
         if(account == null){
             return false;
         }
+        else if(contains(account)){
+            System.out.printf("");
+        }
         accounts[numAcct++] = account;
         if(numAcct >= accounts.length){
             grow();
         }
+        System.out.printf("%s(CC) opened.",account.getProfile().toString());
         return true;
     } //add a new account
 
@@ -110,12 +114,55 @@ public class AccountDatabase {
         }
     }
     public void printSorted(){
-
+        if(numAcct < 1){
+            System.out.println("Account Database is empty!");
+            return;
+        }
+        quicksort(0, numAcct - 1);
+        System.out.println("*Accounts sorted by account type and profile.");
+        for(int i = 0; i < numAcct; i++){
+            System.out.println(accounts[i]);
+        }
     } //sort by account type and profile
     public void printFeesAndInterests(){
+        if(numAcct < 1){
+            System.out.println("Account Database is empty!");
+            return;
+        }
 
     } //calculate interests/fees
     public void printUpdatedBalances(){
+        if(numAcct < 1){
+            System.out.println("Account Database is empty!");
+            return;
+        }
 
     } //apply the interests/fees
+    private void quicksort(int lo, int hi){
+        if(lo >= hi){
+            return;
+        }
+        Account pivot = accounts[lo];
+        int L = lo + 1;
+        int R = hi;
+        while(L <= R){
+            while(accounts[L].compareTo(pivot) <= 0){
+                L++;
+            }
+            while(accounts[R].compareTo(pivot) > 0){
+                R--;
+            }
+            if(L < R){
+                swap(accounts[L],accounts[R]);
+            }
+        }
+            swap(accounts[R],pivot);
+            quicksort(lo, R-1);
+            quicksort(R+1, hi);
+    }
+    private void swap(Account a, Account b) {
+        Account temp = a;
+        a = b;
+        b = temp;
+    }
 }

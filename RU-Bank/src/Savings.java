@@ -27,10 +27,26 @@ public class Savings extends Account{
         this.isLoyal = isLoyal;
     }
 
-
+//O S     april march 1/15/1987 1500 1 
     public static Savings makeSavings(String [] input){
+        
         //toDo
-        return null;
+        Profile profile = Profile.makeProfile(input);
+        if(profile == null){throw new IllegalArgumentException();}
+        Double balance;
+        Boolean isLoyal;
+        try {
+            balance = input[0].equals("O") ? Double.parseDouble(input[5]) : null;
+            isLoyal = input[0].equals("0") ? Integer.parseInt(input[6]) == 1 : null;
+            return new Savings(profile, balance, isLoyal);
+
+        } catch (NumberFormatException e) {
+            System.out.println("Not a valid amount.");
+            return null;
+        } catch(ArrayIndexOutOfBoundsException e){
+            System.out.println("Missing data for opening an account.");
+            return null;
+        }
     }
 
      /**
@@ -66,7 +82,14 @@ public class Savings extends Account{
      */
     @Override
     public String toString() {
-        return "Savings { holder: " + holder + ", balance: " + balance + ", isLoyal: " + isLoyal + " }";
+        //Savings::Jane Doe 10/1/1995::Balance $1,000.00
+        if(!isLoyal){
+            return "Savings::" + holder + "::Balance $" + balance;
+        }
+        else{
+            return "Savings::" + holder + "::Balance $" + balance + "::is loyal";
+        }
+        
     }
     
 }

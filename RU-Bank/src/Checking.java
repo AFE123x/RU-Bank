@@ -28,4 +28,8 @@ public class Checking extends Account {
         // TODO:
         return 0; 
     }
-}
+    @Override
+    public String toString() {
+        return "Checking::" + holder + "::Balance $" + balance;
+        }
+    }

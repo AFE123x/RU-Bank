@@ -21,6 +21,7 @@ public abstract class Account implements Comparable<Account> {
         this.holder = holder;
         this.balance = balance;
     }
+    public abstract String toString();
 
     /**
      * Calculates the monthly interest for this account.
@@ -45,33 +46,23 @@ public abstract class Account implements Comparable<Account> {
     * @throws IllegalArgumentException if the account type provided in the input is not recognized.
     */
     public static Account makeAccount(String[] input) {
-
-       // Check if the account type is 'C' for Checking.
-       if (input[0].equals("C")) {
-           // Create and return a Checking account using the provided data.
-           return Checking.makeAccount(input);
-
-       // Check if the account type is 'CC' for College Checking.
-       } else if (input[0].equals("CC")) {
-           // Create and return a College Checking account using the provided data.
-           return CollegeChecking.makeAccount(input);
-
-       // Check if the account type is 'S' for Savings.
-       } else if (input[0].equals("S")) {
-           // Create and return a Savings account using the provided data.
-           return Savings.makeAccount(input);
-
-       // Check if the account type is 'MM' for Money Market.
-       } else if (input[0].equals("MM")) {
-           // Create and return a Money Market account using the provided data.
-           return MoneyMarket.makeAccount(input);
-
-       } else {
-           // If the account type provided does not match any of the known types, throw an exception.
-           throw new IllegalArgumentException("Invalid account type");
-       }
-    } 
-
+        switch (input[1]) {
+            case "C":
+                return Checking.makeChecking(input);
+            case "CC":
+                return CollegeChecking.makeCollegeChecking(input);
+            case "S":
+                return Savings.makeAccount(input);
+            case "MM":
+                return MoneyMarket.makeAccount(input);
+            default:
+                throw new IllegalArgumentException("Invalid account type");
+        }
+    }
+    
+    public Profile getProfile(){
+        return holder;
+    }
     /**
      * Deposits the specified amount to this account.
      * 

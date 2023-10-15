@@ -7,6 +7,7 @@ public class CollegeChecking extends Checking {
         //campus codes
         CAMPUS_A, CAMPUS_B;
     }
+    //0 – New Brunswick, 1 – Newark, 2 – Camden
     
     private Campus campus;
 
@@ -22,7 +23,8 @@ public class CollegeChecking extends Checking {
             String tempcampusCode = input[0].equals("O") ? input[6] : null;
             return new CollegeChecking(profile, tempbalance, tempcampusCode);
 
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
+            System.out.println("Not a valid amount.");
             return null;
         }
     }
@@ -38,5 +40,10 @@ public class CollegeChecking extends Checking {
         // TODO:
         return 0.0;
     }
-
+    //College Checking::Roy Brooks 10/31/1999::Balance $2,909.10::NEWARK
+    //TO DO
+    public String toString() {
+        String temp =  "College Checking::" + holder + "::Balance $" + balance;
+        return temp;
+        }
     }
