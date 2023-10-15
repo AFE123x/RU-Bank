@@ -48,23 +48,11 @@ public class TransactionManager {
     }
     private Account parse(String[] input){
         try {
-            switch(input[1]){
-                case "C":
-                    return Checking.makeChecking(input);
-                case "CC":
-                    return CollegeChecking.makeCollegeChecking(input);
-                case "S":
-                    break;
-                case "MM":
-                    break;
-                default:
-                    return null;
-            }
-        } catch (Exception e){
+            return Account.makeAccount(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage()); // Display the error message
             return null;
-        }
-        return null;
-        
+        }    
     }
 
 
