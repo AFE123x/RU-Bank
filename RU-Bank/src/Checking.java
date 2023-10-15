@@ -5,11 +5,13 @@ public class Checking extends Account {
     public Checking(Profile holder, double balance) {
         super(holder, balance);
     }
-    public static Checking makeChecking(String [] input) throws NumberFormatException, IndexOutOfBoundsException{
+    public static Checking makeChecking(String [] input) throws NumberFormatException, IndexOutOfBoundsException, NullPointerException{
             Profile profile = Profile.makeProfile(input);
-            double balance = !input[0].equals("C") ? Double.parseDouble(input[5]) : null;
+            Boolean exists = !input[0].equals("C") ? true : false;
+            double balance = exists ? Double.parseDouble(input[5]) : null;
+            
             if(balance <= 0){System.out.println("Initial deposit cannot be 0 or negative.");}
-            return balance > 0 ? new Checking(profile,balance) : null;
+            return (!exists || balance > 0 )? new Checking(profile,balance) : null;
     }
     public String GetType(){
         return "C";

@@ -52,7 +52,10 @@ public class AccountDatabase {
             return false;
         }
         else if(contains(account)){
-            System.out.printf("");
+            if(typecheck(account, accounts[find(account)])){
+            System.out.printf("%s(%s) is already in the database.\n",account.getProfile().toString(),account.GetType());   
+            return false;
+        }
         }
         accounts[numAcct++] = account;
         if(numAcct >= accounts.length){
@@ -61,7 +64,12 @@ public class AccountDatabase {
         System.out.printf("%s(%s) opened.\n",account.getProfile().toString(),account.GetType());
         return true;
     } //add a new account
-
+    private Boolean typecheck(Account A, Account B){
+        boolean condition1 = A.GetType().equals("C") && B.GetType().equals("CC");
+        boolean condition2 = A.GetType().equals("CC") && B.GetType().equals("C");
+        boolean condition3 = A.GetType().equals(B.GetType());
+        return condition1 || condition2 || condition3;
+    }
     /**
      * Will close the account, delete account from the database.
      * @param account
@@ -157,42 +165,40 @@ public class AccountDatabase {
 
     }
 
-    /**
-     * Sorts the accounts using the quicksort algorithm.
-     * @param lo the starting index.
-     * @param hi the ending index.
-     */
-    private void quicksort(int lo, int hi){
-        if(lo >= hi){
+    private void quicksort(int lo, int hi) {
+        if (lo >= hi) {
             return;
         }
+        int pivotIndex = partition(lo, hi);
+        quicksort(lo, pivotIndex - 1);
+        quicksort(pivotIndex + 1, hi);
+    }
+    
+    private int partition(int lo, int hi) {
         Account pivot = accounts[lo];
         int L = lo + 1;
         int R = hi;
-        while(L <= R){
-            while(accounts[L].compareTo(pivot) <= 0){
+        while (true) {
+            while (L <= R && accounts[L].compareTo(pivot) <= 0) {
                 L++;
             }
-            while(accounts[R].compareTo(pivot) > 0){
+            while (R >= L && accounts[R].compareTo(pivot) > 0) {
                 R--;
             }
-            if(L < R){
-                swap(accounts[L],accounts[R]);
+            if (L < R) {
+                swap(L, R);
+            } else {
+                break;
             }
         }
-            swap(accounts[R],pivot);
-            quicksort(lo, R-1);
-            quicksort(R+1, hi);
+        swap(lo, R);
+        return R;
     }
-
-    /**
-     * Swaps the positions of two accounts in the array.
-     * @param a the first account.
-     * @param b the second account.
-     */
-    private void swap(Account a, Account b) {
-        Account temp = a;
-        a = b;
-        b = temp;
+    
+    private void swap(int i, int j) {
+        Account temp = accounts[i];
+        accounts[i] = accounts[j];
+        accounts[j] = temp;
     }
+    
 }

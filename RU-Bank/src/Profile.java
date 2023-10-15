@@ -67,6 +67,7 @@ public class Profile implements Comparable<Profile> {
     public Date getDob() {
         return dob;
     }
+    
     public String toString(){
         //John Doe 2/19/2000
         return fname + " " + lname + " " + dob.toString();
@@ -80,7 +81,16 @@ public class Profile implements Comparable<Profile> {
      * @return Currently returns 0.
      */
     @Override
+    //last name, first name and dob.
     public int compareTo(Profile profile) {
-        return 0;
+        int firstcompare = this.lname.compareTo(profile.getLname());
+        if(firstcompare != 0){
+            return firstcompare;
+        }
+        firstcompare = this.fname.compareTo(profile.getFname());
+        if(firstcompare != 0){
+            return firstcompare;
+        }
+        return this.dob.compareTo(profile.dob);
     }
 }

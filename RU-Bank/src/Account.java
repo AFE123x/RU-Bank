@@ -70,19 +70,12 @@ public abstract class Account implements Comparable<Account> {
      */
     @Override
     public int compareTo(Account otherAccount) {
-        int lnameComparison = this.holder.getLname().compareTo(otherAccount.holder.getLname());
-    
-        if(lnameComparison != 0) {
-            return lnameComparison;
+        int compare = this.GetType().compareTo(otherAccount.GetType());
+        if(compare == 0){
+            return getProfile().compareTo(otherAccount.getProfile());
         }
-
-        int fnameComparison = this.holder.getFname().compareTo(otherAccount.holder.getFname());
-    
-        if(fnameComparison != 0) {
-            return fnameComparison;
-        }
-
-        return this.holder.getDob().compareTo(otherAccount.holder.getDob());
+        return compare;
+        
     }
 
     /**

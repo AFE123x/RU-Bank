@@ -17,6 +17,7 @@ public class TransactionManager {
         while(true){
             Thread.sleep(1000);
             decision = scanner.nextLine();
+            System.out.println(decision);
             String[] decisionArray = decision.split("\\s+");
 
             switch(decisionArray[0]){
@@ -77,7 +78,13 @@ public class TransactionManager {
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Missing data for opening an account.");
             return null;
-        } 
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return null;
+        } catch (NullPointerException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
 

@@ -21,13 +21,27 @@ public class CollegeChecking extends Checking {
 
     public CollegeChecking(Profile holder, double balance, String campusCode) {
         super(holder, balance);
-        this.campus = Campus.valueOf(campusCode);
+        switch(campusCode){
+            case "0":
+                this.campus = Campus.NEW_BRUNSWICK;
+                break;
+            case "1":
+                this.campus = campus.NEWARK;
+                break;
+            case "2":
+                this.campus = campus.CAMDEN;
+                break;
+            default:
+                this.campus = null;
+                break;
+        }
     }
     public static CollegeChecking makeCollegeChecking(String [] input) throws NumberFormatException, IndexOutOfBoundsException{
             Profile profile = Profile.makeProfile(input);
             
             double tempbalance = !input[0].equals("C") ? Double.parseDouble(input[5]) : null;
             String tempcampusCode = input[0].equals("O") ? input[6] : null;
+            if(tempbalance <= 0){throw new IllegalArgumentException("Initial deposit cannot be 0 or negative.");}
             return new CollegeChecking(profile, tempbalance, tempcampusCode);
     }
 
