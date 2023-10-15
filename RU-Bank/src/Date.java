@@ -101,7 +101,13 @@ public class Date implements Comparable<Date>{
         return true;
     }
 
-
+    /**
+     * Checks if the date (representing a date of birth) is valid for a College Checking account.
+     * The criteria for validity is based on an age range of 16 to 24, inclusive.
+     * 
+     * @return true if the age derived from the date is between 16 to 24, inclusive; 
+     *         false otherwise. 
+     */
     public boolean checkCollegeCheckingValidity(){
 
         Calendar currCalendar = Calendar.getInstance();
@@ -216,32 +222,48 @@ public class Date implements Comparable<Date>{
         return this.month + "/" + this.day + "/" + this.year;
     }
 
-    /* The following is the testbed for all various kinds of dates which might be entered by the user
-        Here we check for all conditions that need to be met for the date to be a valid date.
-    */
+    /**
+     * This method contains various test scenarios for date validity and 
+     * college checking validity based on age constraints.
+     *
+     * @param args command-line arguments (not used)
+     */
     public static void main(String[] args) {
-        // Test with invalid month
-        testDateValidity(2023, 13, 15, false);
+        // 1. Test with valid month and day
+        testDateValidity(2005, 5, 15, true);
 
-        // Test with invalid day
-        testDateValidity(2023, 11, 31, false);
+        // 2. Test for a future date (Assuming current year is 2023 for simplicity)
+        testDateValidity(2025, 5, 15, false);
 
-        // Test with a date in the past
-        testDateValidity(2023, 9, 24, false);
+        // 3. Test for a past date with age less than 16
+        testDateValidity(2010, 5, 15, false);
 
-        // Test with a valid date more than 6 months in the future
-        testDateValidity(2024, 10, 15, false);
+        // 4. Test for a past date with age of exactly 16
+        testDateValidity(2007, 10, 18, false);
+        
+        // 5. Test for a past date with age between 16 and 24
+        testDateValidity(2000, 5, 15, true);
 
-        // Test with a valid leap year date
-        testDateValidity(2024, 2, 29, true);
+        // 6. Test for a past date with age more than 24
+        testDateValidity(1995, 5, 15, true);
 
-        // Test with a valid non-leap year date
-        testDateValidity(2023, 2, 29, false);
+        // 7. Test for leap year conditions
+        // 7.1 Valid leap year date
+        testDateValidity(2004, 2, 29, true);
+        // 7.2 Invalid leap year date
+        testDateValidity(2003, 2, 29, false);
 
-        // Test with a valid date within the next 6 months
-        testDateValidity(2023, 10, 28, true);
+        // 8. Test for College Checking account validity
+        // 8.1 Age below 16
+        testCollegeCheckingValidity(2010, 5, 15, false);
+        // 8.2 Age 16
+        testCollegeCheckingValidity(2007, 10, 14, true);
+        // 8.3 Age 20 (within range 16-24)
+        testCollegeCheckingValidity(2003, 5, 15, true);
+        // 8.4 Age 25 (out of range 16-24)
+        testCollegeCheckingValidity(1998, 5, 15, false);
     }
-    // A helper method to execute date checks 
+
     private static void testDateValidity(int year, int month, int day, boolean expected) {
         Date date = new Date(year, month, day);
         boolean isValid = date.isValid();
@@ -249,5 +271,11 @@ public class Date implements Comparable<Date>{
         System.out.printf("Testing Date: %s Expected: %s Actual: %s Result: %s%n", date, expected, isValid, result);
     }
 
+    private static void testCollegeCheckingValidity(int year, int month, int day, boolean expected) {
+        Date date = new Date(year, month, day);
+        boolean isValid = date.checkCollegeCheckingValidity();
+        String result = isValid == expected ? "PASSED" : "FAILED";
+        System.out.printf("Testing College Checking Date: %s Expected: %s Actual: %s Result: %s%n", date, expected, isValid, result);
+    }
 
 }
