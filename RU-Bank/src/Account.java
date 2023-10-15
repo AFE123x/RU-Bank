@@ -37,32 +37,12 @@ public abstract class Account implements Comparable<Account> {
      */
     public abstract double monthlyFee();
 
-    /**
-    * Creates an Account object based on the given input data.
-    *
-    * @param input An array of strings containing the information needed to create an account.
-    *              The first element in the array determines the account type.
-    * @return An instance of the appropriate Account subclass based on the account type.
-    * @throws IllegalArgumentException if the account type provided in the input is not recognized.
-    */
-    public static Account makeAccount(String[] input) {
-        switch (input[1]) {
-            case "C":
-                return Checking.makeChecking(input);
-            case "CC":
-                return CollegeChecking.makeCollegeChecking(input);
-            case "S":
-                return Savings.makeAccount(input);
-            case "MM":
-                return MoneyMarket.makeAccount(input);
-            default:
-                throw new IllegalArgumentException("Invalid account type");
-        }
-    }
     
     public Profile getProfile(){
         return holder;
     }
+
+    
     /**
      * Deposits the specified amount to this account.
      * 
