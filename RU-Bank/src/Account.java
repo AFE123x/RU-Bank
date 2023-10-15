@@ -37,15 +37,40 @@ public abstract class Account implements Comparable<Account> {
     public abstract double monthlyFee();
 
     /**
-     * A factory method to create and return an Account instance based on the provided input.
-     * This method should be overridden by concrete subclasses of Account.
-     * 
-     * @param input The data or parameters required to create an Account.
-     * @return An instance of Account or its subclass, or null if the account cannot be created.
-     */
+    * Creates an Account object based on the given input data.
+    *
+    * @param input An array of strings containing the information needed to create an account.
+    *              The first element in the array determines the account type.
+    * @return An instance of the appropriate Account subclass based on the account type.
+    * @throws IllegalArgumentException if the account type provided in the input is not recognized.
+    */
     public static Account makeAccount(String[] input) {
-        return null;  // By default, return null. Subclasses should override this method.
-    }
+
+       // Check if the account type is 'C' for Checking.
+       if (input[0].equals("C")) {
+           // Create and return a Checking account using the provided data.
+           return Checking.makeAccount(input);
+
+       // Check if the account type is 'CC' for College Checking.
+       } else if (input[0].equals("CC")) {
+           // Create and return a College Checking account using the provided data.
+           return CollegeChecking.makeAccount(input);
+
+       // Check if the account type is 'S' for Savings.
+       } else if (input[0].equals("S")) {
+           // Create and return a Savings account using the provided data.
+           return Savings.makeAccount(input);
+
+       // Check if the account type is 'MM' for Money Market.
+       } else if (input[0].equals("MM")) {
+           // Create and return a Money Market account using the provided data.
+           return MoneyMarket.makeAccount(input);
+
+       } else {
+           // If the account type provided does not match any of the known types, throw an exception.
+           throw new IllegalArgumentException("Invalid account type");
+       }
+    } 
 
     /**
      * Deposits the specified amount to this account.
