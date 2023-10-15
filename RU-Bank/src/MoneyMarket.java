@@ -61,7 +61,7 @@ public class MoneyMarket extends Savings {
             System.out.println("Invalid balance format.");
             return null;
         }
-        if(balance > 2000){
+        if(balance < 2000){
             throw new IllegalArgumentException("Balance is less than minimum required");
         }
         return new MoneyMarket(profile, balance);
