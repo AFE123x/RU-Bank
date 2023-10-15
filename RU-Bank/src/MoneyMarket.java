@@ -35,7 +35,7 @@ public class MoneyMarket extends Savings {
      */
     @Override
     public double monthlyInterest() {
-        return balance * (INTEREST_RATE_MONEY_MARKET + (isLoyal ? LOYALTY_BONUS : 0));
+        return balance * ((INTEREST_RATE_MONEY_MARKET/12.0) + (isLoyal ? LOYALTY_BONUS : 0));
     }
 
     /**
@@ -61,7 +61,7 @@ public class MoneyMarket extends Savings {
             System.out.println("Invalid balance format.");
             return null;
         }
-        if(balance > 2000){
+        if(balance < 2000){
             throw new IllegalArgumentException("Balance is less than minimum required");
         }
         return new MoneyMarket(profile, balance);

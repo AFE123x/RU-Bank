@@ -106,6 +106,11 @@ public class AccountDatabase {
         }
         return false;
     } //false if insufficient fund
+
+    /**
+     * Deposits the specified amount into the given account.
+     * @param account the account to which the deposit is made.
+     */
     public void deposit(Account account){
         for(int i = 0; i < numAcct; i++){
             if(account.equals(accounts[i])){
@@ -113,6 +118,10 @@ public class AccountDatabase {
             }
         }
     }
+    
+    /**
+     * Prints the list of accounts sorted by account type and profile.
+     */
     public void printSorted(){
         if(numAcct < 1){
             System.out.println("Account Database is empty!");
@@ -124,20 +133,34 @@ public class AccountDatabase {
             System.out.println(accounts[i]);
         }
     } //sort by account type and profile
+
+     /**
+     * Prints the interests and fees for each account.
+     */
     public void printFeesAndInterests(){
         if(numAcct < 1){
             System.out.println("Account Database is empty!");
             return;
         }
 
-    } //calculate interests/fees
+    } 
+
+    /**
+     * Updates account balances by applying interests and fees.
+     */
     public void printUpdatedBalances(){
         if(numAcct < 1){
             System.out.println("Account Database is empty!");
             return;
         }
 
-    } //apply the interests/fees
+    }
+
+    /**
+     * Sorts the accounts using the quicksort algorithm.
+     * @param lo the starting index.
+     * @param hi the ending index.
+     */
     private void quicksort(int lo, int hi){
         if(lo >= hi){
             return;
@@ -160,6 +183,12 @@ public class AccountDatabase {
             quicksort(lo, R-1);
             quicksort(R+1, hi);
     }
+
+    /**
+     * Swaps the positions of two accounts in the array.
+     * @param a the first account.
+     * @param b the second account.
+     */
     private void swap(Account a, Account b) {
         Account temp = a;
         a = b;
