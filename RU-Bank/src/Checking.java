@@ -1,6 +1,6 @@
 public class Checking extends Account {
     private static final double INTEREST_RATE = 0.01;
-    private static final double FEE = 10.0;
+    private static final double FEE = 12.0;
 
     public Checking(Profile holder, double balance) {
         super(holder, balance);
@@ -17,17 +17,19 @@ public class Checking extends Account {
 
 
     @Override
-    public double monthlyInterest() {
-        // TODO: 
-        return 0; 
+    public double monthlyInterest() { 
+        return balance * (INTEREST_RATE/12.0);
     }
 
 
     @Override
     public double monthlyFee() {
-        // TODO:
-        return 0; 
+        if(balance <= 1000){
+            return 0;
+        }
+        return FEE;
     }
+    
     @Override
     public String toString() {
         return "Checking::" + holder + "::Balance $" + balance;
