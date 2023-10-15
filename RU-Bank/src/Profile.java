@@ -35,6 +35,11 @@ public class Profile implements Comparable<Profile> {
     public static Profile makeProfile(String[] input) {
         try {
             Date dob = Date.makeDate(input[4]);
+            if (dob.isValid()){
+            return new Profile(input[2], input[3], dob);
+            }else{
+            throw new IllegalArgumentException();
+            }
             return new Profile(input[2], input[3], dob);
         } catch (Exception e) {
             return null;
