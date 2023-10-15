@@ -1,7 +1,7 @@
 public class CollegeChecking extends Checking {
     // all constants
-    private static final double INTEREST_RATE = 0.02;
-    private static final double FEE = 8.0;
+    private static final double INTEREST_RATE = 0.01;
+    private static final double FEE = 0.0;
     
     private enum Campus {
         //campus codes
@@ -31,14 +31,12 @@ public class CollegeChecking extends Checking {
 
     @Override
     public double monthlyInterest() {
-        // TODO: 
-        return 0; 
+        return balance * (INTEREST_RATE/12);
     }
 
     @Override
     public double monthlyFee() {
-        // TODO:
-        return 0.0;
+        return FEE;
     }
     //College Checking::Roy Brooks 10/31/1999::Balance $2,909.10::NEWARK
     //TO DO
