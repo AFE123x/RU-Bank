@@ -38,6 +38,12 @@ public class CollegeChecking extends Checking {
     }
     public static CollegeChecking makeCollegeChecking(String [] input) throws NumberFormatException, IndexOutOfBoundsException{
             Profile profile = Profile.makeProfile(input);
+            if(profile == null){
+                return null;
+            }
+            if(!profile.getDob().checkCollegeCheckingValidity()){
+            return null;
+            }
             
             double tempbalance = !input[0].equals("C") ? Double.parseDouble(input[5]) : null;
             String tempcampusCode = input[0].equals("O") ? input[6] : null;
