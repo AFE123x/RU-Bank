@@ -4,8 +4,16 @@ public class CollegeChecking extends Checking {
     private static final double FEE = 0.0;
     
     private enum Campus {
-        //campus codes
-        CAMPUS_A, CAMPUS_B;
+        NEW_BRUNSWICK("0", "New Brunswick"),
+        NEWARK("1", "Newark"),
+        CAMDEN("2", "Camden");
+        private final String value;
+        private final String name;
+
+        Campus(String value, String name) {
+            this.value = value;
+            this.name = name;
+        }
     }
     //0 – New Brunswick, 1 – Newark, 2 – Camden
     
@@ -15,18 +23,12 @@ public class CollegeChecking extends Checking {
         super(holder, balance);
         this.campus = Campus.valueOf(campusCode);
     }
-    public static CollegeChecking makeCollegeChecking(String [] input){
-        try {
+    public static CollegeChecking makeCollegeChecking(String [] input) throws NumberFormatException, IndexOutOfBoundsException{
             Profile profile = Profile.makeProfile(input);
             
             double tempbalance = !input[0].equals("C") ? Double.parseDouble(input[5]) : null;
             String tempcampusCode = input[0].equals("O") ? input[6] : null;
             return new CollegeChecking(profile, tempbalance, tempcampusCode);
-
-        } catch (NumberFormatException e) {
-            System.out.println("Not a valid amount.");
-            return null;
-        }
     }
 
     @Override
@@ -37,6 +39,9 @@ public class CollegeChecking extends Checking {
     @Override
     public double monthlyFee() {
         return FEE;
+    }
+    public String GetType(){
+        return "CC";
     }
     //College Checking::Roy Brooks 10/31/1999::Balance $2,909.10::NEWARK
     //TO DO

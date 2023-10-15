@@ -5,16 +5,15 @@ public class Checking extends Account {
     public Checking(Profile holder, double balance) {
         super(holder, balance);
     }
-    public static Checking makeChecking(String [] input){
-        try {
+    public static Checking makeChecking(String [] input) throws NumberFormatException, IndexOutOfBoundsException{
             Profile profile = Profile.makeProfile(input);
-            double balance = !input[0].equals("C") ? Double.parseDouble(input[4]) : null;
-            return new Checking(profile,balance);
-        } catch (Exception e) {
-            return null;
-        }
+            double balance = !input[0].equals("C") ? Double.parseDouble(input[5]) : null;
+            if(balance <= 0){System.out.println("Initial deposit cannot be 0 or negative.");}
+            return balance > 0 ? new Checking(profile,balance) : null;
     }
-
+    public String GetType(){
+        return "C";
+    }
 
     @Override
     public double monthlyInterest() { 

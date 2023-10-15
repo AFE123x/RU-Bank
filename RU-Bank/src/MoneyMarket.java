@@ -29,6 +29,7 @@ public class MoneyMarket extends Savings {
         this.withdrawal = 0;
     }
 
+
     /**
      * Calculates the monthly interest for the Money Market account.
      * @return The monthly interest.
@@ -48,28 +49,19 @@ public class MoneyMarket extends Savings {
      * @return A new MoneyMarket instance if the input is valid; otherwise, null.
      * @throws IllegalArgumentException if the provided data is not valid for creating a MoneyMarket instance.
      */
-    public static MoneyMarket makeMoneyMarket(String input[]){
-        try{
+    public static MoneyMarket makeMoneyMarket(String input[]) throws NumberFormatException, IndexOutOfBoundsException{
         Profile profile = Profile.makeProfile(input);
         if(profile == null){
             throw new IllegalArgumentException();
         }
         Double balance;
-        try {
-            balance = Double.parseDouble(input[4]);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid balance format.");
-            return null;
-        }
+            balance = Double.parseDouble(input[5]);
+
         if(balance < 2000){
             throw new IllegalArgumentException("Balance is less than minimum required");
         }
         return new MoneyMarket(profile, balance);
-        }catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return null;
         }
-    }
 
     /**
      * Calculates the monthly fee for the Money Market account.
@@ -95,7 +87,9 @@ public class MoneyMarket extends Savings {
         balance -= amount;
         withdrawal++;
     }
-
+    public String GetType(){
+        return "MM";
+    }
     /**
      * Returns a string representation of the Money Market account.
      * @return A string representing the Money Market account.

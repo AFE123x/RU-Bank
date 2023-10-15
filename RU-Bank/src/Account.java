@@ -29,7 +29,7 @@ public abstract class Account implements Comparable<Account> {
      * @return The monthly interest amount.
      */
     public abstract double monthlyInterest();
-
+    public abstract String GetType();
     /**
      * Calculates the monthly fee for this account.
      * 

@@ -1,17 +1,21 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class TransactionManager {
     private Scanner scanner;
     private String decision;
     private AccountDatabase accountDatabase;
-    public TransactionManager(){
-        this.scanner = new Scanner(System.in);
+    public TransactionManager() throws FileNotFoundException{
+        // this.scanner = new Scanner(System.in);
+        this.scanner = new Scanner(new File("../Testcases/input.txt"));
         System.out.println("Transaction Manager is running.");
         accountDatabase = new AccountDatabase();
     }
 
-    public void run(){
+    public void run() throws InterruptedException{
         while(true){
+            Thread.sleep(1000);
             decision = scanner.nextLine();
             String[] decisionArray = decision.split("\\s+");
 
@@ -37,6 +41,8 @@ public class TransactionManager {
                     break;
                 case "Q":
                     return;
+                case "":
+                    break;
                 default:
                     System.out.println("Invalid command!");
                     break;
@@ -48,7 +54,7 @@ public class TransactionManager {
     private Account parse(String[] input) {
         Account account;
         try {
-            switch (input[0]) {
+            switch (input[1]) {
                 case "C":
                     account =  Checking.makeChecking(input);
                     break;
@@ -64,14 +70,14 @@ public class TransactionManager {
                 default:
                     throw new IllegalArgumentException("Invalid account type");
             }
-            if (account != null) {
-                System.out.println(account.getHolder() + " (" + account.getClass().getSimpleName() + ") opened.");
-            }
             return account; 
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage()); // Display the error message
+        } catch (NumberFormatException e){
+            System.out.println("Not a valid amount.");
             return null;
-        }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Missing data for opening an account.");
+            return null;
+        } 
     }
 
 

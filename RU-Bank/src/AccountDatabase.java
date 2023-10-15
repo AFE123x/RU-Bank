@@ -58,7 +58,7 @@ public class AccountDatabase {
         if(numAcct >= accounts.length){
             grow();
         }
-        System.out.printf("%s(CC) opened.",account.getProfile().toString());
+        System.out.printf("%s(%s) opened.\n",account.getProfile().toString(),account.GetType());
         return true;
     } //add a new account
 
@@ -132,6 +132,7 @@ public class AccountDatabase {
         for(int i = 0; i < numAcct; i++){
             System.out.println(accounts[i]);
         }
+        System.out.println("*end of list.");
     } //sort by account type and profile
 
      /**
