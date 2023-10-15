@@ -66,8 +66,8 @@ public class Date implements Comparable<Date>{
 
     /**
      * Checks if the date is valid and meets the specific conditions:
-     * 1. It is a future date.
-     * 2. It is within the next 6 months.
+     * 1. It is a future date or the current date. 
+     * 2. The age of all account holders must be above 16.
      * 3. The day and month combination is valid.
      *
      * @return true if the date is valid according to the mentioned conditions,
@@ -79,15 +79,47 @@ public class Date implements Comparable<Date>{
         Calendar currCalendar = Calendar.getInstance();
         Date currDate = new Date(currCalendar.get(Calendar.YEAR), currCalendar.get(Calendar.MONTH) + 1, currCalendar.get(Calendar.DAY_OF_MONTH));
 
-        currCalendar.add(Calendar.MONTH, 6);
-        Date sixMonthsLater = new Date(currCalendar.get(Calendar.YEAR), currCalendar.get(Calendar.MONTH) + 1, currCalendar.get(Calendar.DAY_OF_MONTH));
-        if (this.compareTo(sixMonthsLater) > 0) {
-            System.out.println(toString() + ": Event date must be within 6 months!");
+        // if age if current or future date 
+        if(this.compareTo(currDate) >= 0){
+            System.out.println("DOB invalid: " + toString() + " cannot be today or future day!");
             return false;
         }
+        
+        int currentYear = currCalendar.get(Calendar.YEAR);
+        int age = currentYear - year;
+        if (month > currCalendar.get(Calendar.MONTH) + 1 || 
+        (month == currCalendar.get(Calendar.MONTH) + 1 && day > currCalendar.get(Calendar.DAY_OF_MONTH))) {
+            age--;
+        }
 
+    
+        // Check if age is 16 or above
+        if (age < 16) {
+            System.out.println("DOB invalid: Age is below 16 years.");
+            return false;
+        }   
         return true;
     }
+
+
+    public boolean checkCollegeCheckingValidity(){
+
+        Calendar currCalendar = Calendar.getInstance();
+        int currentYear = currCalendar.get(Calendar.YEAR);
+        int age  = currentYear - year;
+        if (month > currCalendar.get(Calendar.MONTH) + 1 || 
+        (month == currCalendar.get(Calendar.MONTH) + 1 && day > currCalendar.get(Calendar.DAY_OF_MONTH))) {
+            age--;
+        }
+        
+        if (age > 24 || age < 16) {
+            System.out.println("DOB invalid for College Checking account: Age must be between 16 to 24.");
+            return false;
+        }
+        return true;
+    }
+
+    
 
     /**
      * Prints an error message with the date in case the date is invalid.
