@@ -35,7 +35,7 @@ public class MoneyMarket extends Savings {
      */
     @Override
     public double monthlyInterest() {
-        return balance * (INTEREST_RATE_MONEY_MARKET + (isLoyal ? LOYALTY_BONUS : 0));
+        return balance * ((INTEREST_RATE_MONEY_MARKET/12.0) + (isLoyal ? LOYALTY_BONUS : 0));
     }
 
     /**
