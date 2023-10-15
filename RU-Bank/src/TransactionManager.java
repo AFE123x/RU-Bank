@@ -45,13 +45,33 @@ public class TransactionManager {
 
         }
     }
-    private Account parse(String[] input){
+    private Account parse(String[] input) {
+        Account account;
         try {
-            return Account.makeAccount(input);
+            switch (input[0]) {
+                case "C":
+                    account =  Checking.makeChecking(input);
+                    break;
+                case "CC":
+                    account = CollegeChecking.makeCollegeChecking(input);
+                    break;
+                case "S":
+                    account = Savings.makeSavings(input);
+                    break;
+                case "MM":
+                    account  = MoneyMarket.makeMoneyMarket(input);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid account type");
+            }
+            if (account != null) {
+                System.out.println(account.getHolder() + " (" + account.getClass().getSimpleName() + ") opened.");
+            }
+            return account; 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage()); // Display the error message
             return null;
-        }    
+        }
     }
 
 
