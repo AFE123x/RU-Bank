@@ -36,6 +36,7 @@ public class TransactionManager {
                 case "P":
                     accountDatabase.printSorted();
                 case "PI":
+                    accountDatabase.printFeesAndInterests();
                     break;
                 case "UB":
                     accountDatabase.printUpdatedBalances();

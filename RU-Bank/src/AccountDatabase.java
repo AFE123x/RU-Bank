@@ -41,6 +41,17 @@ public class AccountDatabase {
     public boolean contains(Account account){
         return find(account) != -1;
     }
+    private int find(Profile profile){
+        for(int i = 0; i < numAcct; i++){
+            if(accounts[i].getProfile().equals(profile)){
+                return i;
+            }
+        }
+        return -1;
+    }
+    private boolean contains(Profile profile){
+        return find(profile) != -1;
+    }
 
     /**
      * Given a valid account, the account will be added to database.
@@ -51,8 +62,8 @@ public class AccountDatabase {
         if(account == null){
             return false;
         }
-        else if(contains(account)){
-            if(typecheck(account, accounts[find(account)])){
+        else if(contains(account.getProfile())){
+            if(typecheck(account, accounts[find(account.getProfile())])){
             System.out.printf("%s(%s) is already in the database.\n",account.getProfile().toString(),account.GetType());   
             return false;
         }
@@ -65,6 +76,7 @@ public class AccountDatabase {
         return true;
     } //add a new account
     private Boolean typecheck(Account A, Account B){
+        System.out.println("A:" + A.GetType() + ", B:" + B.GetType());
         boolean condition1 = A.GetType().equals("C") && B.GetType().equals("CC");
         boolean condition2 = A.GetType().equals("CC") && B.GetType().equals("C");
         boolean condition3 = A.GetType().equals(B.GetType());
