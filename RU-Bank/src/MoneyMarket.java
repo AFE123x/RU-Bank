@@ -24,9 +24,9 @@ public class MoneyMarket extends Savings {
      * @param balance The initial balance of the account.
      * @param withdrawal The initial number of withdrawals made.
      */
-    public MoneyMarket(Profile holder, double balance, int withdrawal) {
+    public MoneyMarket(Profile holder, double balance) {
         super(holder, balance, true); 
-        this.withdrawal = withdrawal;
+        this.withdrawal = 0;
     }
 
     /**
@@ -36,6 +36,39 @@ public class MoneyMarket extends Savings {
     @Override
     public double monthlyInterest() {
         return balance * (INTEREST_RATE_MONEY_MARKET + (isLoyal ? LOYALTY_BONUS : 0));
+    }
+
+    /**
+     * Constructs and returns a MoneyMarket object based on the provided input data.
+     * The input is expected to have the profile details and balance information.
+     * 
+     * @param input An array containing the required data to create a MoneyMarket instance.
+     *              Typically, the input should have profile data followed by a balance.
+     *              For example: [firstName, lastName, ... , balance]
+     * @return A new MoneyMarket instance if the input is valid; otherwise, null.
+     * @throws IllegalArgumentException if the provided data is not valid for creating a MoneyMarket instance.
+     */
+    public static MoneyMarket makeMoneyMarket(String input[]){
+        try{
+        Profile profile = Profile.makeProfile(input);
+        if(profile == null){
+            throw new IllegalArgumentException();
+        }
+        Double balance;
+        try {
+            balance = Double.parseDouble(input[4]);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid balance format.");
+            return null;
+        }
+        if(balance > 2000){
+            throw new IllegalArgumentException("Balance is less than minimum required");
+        }
+        return new MoneyMarket(profile, balance);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     /**
