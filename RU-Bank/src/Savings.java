@@ -68,5 +68,11 @@ public class Savings extends Account{
     public String toString() {
         return "Savings { holder: " + holder + ", balance: " + balance + ", isLoyal: " + isLoyal + " }";
     }
+
+
+    @Override
+    public String gettype() {
+       return "S";
+    }
     
 }

@@ -14,7 +14,13 @@ public abstract class Account implements Comparable<Account> {
     public double getbalance(){
         return balance;
     }
-
+    public void withdraw(double amount){
+        balance -= amount;
+    }
+    public Profile getProfile(){
+        return holder;
+    }
+    public abstract String gettype();
     @Override
     public int compareTo(Account otherAccount) {
         // TODO: 

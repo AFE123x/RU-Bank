@@ -36,6 +36,8 @@ public class TransactionManager {
                 case "UB":
                     accountDatabase.printUpdatedBalances();
                     break;
+                case "":
+                    break;
                 case "Q":
                     return;
                 default:
@@ -60,7 +62,8 @@ public class TransactionManager {
                 default:
                     return null;
             }
-        } catch (Exception e){
+        } catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("Not enough data");
             return null;
         }
         return null;

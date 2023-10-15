@@ -12,7 +12,8 @@ public class Profile implements Comparable<Profile>{
         try {
             Date dob = Date.makeDate(input[4]);
             return new Profile(input[2], input[3], dob);
-        } catch (Exception e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Not enough data");
             return null;
         }
     }
@@ -31,5 +32,8 @@ public class Profile implements Comparable<Profile>{
     @Override
     public int compareTo(Profile profile) {
         return 0;
+    }
+    public String toString(){
+        return fname + " " + lname + " " + dob;
     }
 }

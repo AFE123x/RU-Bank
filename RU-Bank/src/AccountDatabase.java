@@ -51,6 +51,15 @@ public class AccountDatabase {
         if(account == null){
             return false;
         }
+        else if(contains(account)){
+            //John Doe 2/19/2000(C) is already in the database.
+            System.out.printf("%s(%s) is already in the database.\n",account.getProfile().toString(),account.gettype());
+            // System.out.println();
+            return false;
+        }
+        //John Doe 2/19/2000(CC) opened.
+        System.out.printf("%s(%s) opened.\n",account.getProfile().toString(),account.gettype());
+        // System.out.println();
         accounts[numAcct++] = account;
         if(numAcct >= accounts.length){
             grow();
@@ -94,12 +103,18 @@ public class AccountDatabase {
         if(account != null){
             for(int i = 0; i < numAcct; i++){
                 if(account.equals(accounts[i])){
-                    if(accounts[i].getbalance() > 0){
-
+                    if(accounts[i].getbalance()-account.getbalance() >= 0){
+                        accounts[i].withdraw(account.getbalance());
+                        return true;
+                    }
+                    else{
+                        System.out.println("Inadequate Funds!");
+                        return false;
                     }
                 }
             }
         }
+        System.out.println("Unable to locate Account!");
         return false;
     } //false if insufficient fund
     public void deposit(Account account){
@@ -110,12 +125,18 @@ public class AccountDatabase {
         }
     }
     public void printSorted(){
-
+        if(numAcct < 1){
+            System.out.println("Account Database is empty!");
+        }
     } //sort by account type and profile
     public void printFeesAndInterests(){
-
+        if(numAcct < 1){
+            System.out.println("Account Database is empty!");
+        }
     } //calculate interests/fees
     public void printUpdatedBalances(){
-
+        if(numAcct < 1){
+            System.out.println("Account Database is empty!");
+        }
     } //apply the interests/fees
 }
