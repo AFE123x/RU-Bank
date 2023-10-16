@@ -1,3 +1,12 @@
+/**
+ * Represents a Savings account type which extends the base Account class.
+ * The Savings account has properties that determine if the account holder 
+ * is loyal, the interest rates for the savings account, a bonus interest rate 
+ * for loyal customers, a monthly fee for balances less than the minimum 
+ * balance, and the minimum balance required to avoid a monthly fee.
+ *
+ * @author Digvijay Singh, Arun Felix
+ */
 public class Savings extends Account{
 
     /** Represents if the account holder has loyal customer status */
