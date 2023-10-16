@@ -7,8 +7,7 @@ import java.util.Scanner;
  * It reads transactions from a file and processes them.
  * Supported transactions include: open, close, deposit, withdraw, print, and others.
  * 
- * @author [Your Name or Author's Name]
- * @version [Version Number, e.g., 1.0]
+ * @author Digvijay Singh, Arun Felix
  */
 public class TransactionManager {
     private Scanner scanner;
