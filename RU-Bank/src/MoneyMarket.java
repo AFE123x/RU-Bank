@@ -1,5 +1,6 @@
 /**
  * Represents a Money Market account.
+ * @author Arun Felix, Digvijay Singh
  */
 public class MoneyMarket extends Savings {
     /** Tracks the number of withdrawals made */
@@ -87,9 +88,14 @@ public class MoneyMarket extends Savings {
         balance -= amount;
         withdrawal++;
     }
+
+    /** Returns the type of the Account
+     * @returns A string representing the type of the account, in this case "MM"
+     */
     public String GetType(){
         return "MM";
     }
+    
     /**
      * Returns a string representation of the Money Market account.
      * @return A string representing the Money Market account.

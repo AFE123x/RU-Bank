@@ -1,6 +1,21 @@
+/**
+ * Represents a database to manage multiple accounts.
+ * Provides functionalities for opening, closing, depositing into, and withdrawing from accounts.
+ * Also supports sorting and printing account data.
+ * 
+ * @author Arun Felix, Digvijay Singh
+ */
 public class AccountDatabase {
-    private Account [] accounts; //list of various types of accounts
-    private int numAcct; //number of accounts in the array
+
+    /** Array to store the accounts. */
+    private Account [] accounts; 
+    
+    /** Number of active accounts in the database. */
+    private int numAcct;
+
+    /**
+     * Default constructor initializing the database with default size.
+     */
     public AccountDatabase(){
         this.accounts = new Account[4];
         this.numAcct = 0;
@@ -177,6 +192,13 @@ public class AccountDatabase {
 
     }
 
+    /**
+     * Sorts the accounts based on the account type and profile.
+     * Utilizes the quicksort algorithm.
+     *
+     * @param lo the lower index bound for the sort.
+     * @param hi the upper index bound for the sort.
+     */
     private void quicksort(int lo, int hi) {
         if (lo >= hi) {
             return;
@@ -185,7 +207,15 @@ public class AccountDatabase {
         quicksort(lo, pivotIndex - 1);
         quicksort(pivotIndex + 1, hi);
     }
-    
+
+    /**
+     * Determines the pivot's correct position in the sorted version of the array.
+     * Used in the quicksort algorithm.
+     *
+     * @param lo the lower index bound for the partition.
+     * @param hi the upper index bound for the partition.
+     * @return the pivot's correct position index.
+     */
     private int partition(int lo, int hi) {
         Account pivot = accounts[lo];
         int L = lo + 1;
@@ -206,7 +236,13 @@ public class AccountDatabase {
         swap(lo, R);
         return R;
     }
-    
+
+    /**
+     * Swaps two accounts in the database based on their indices.
+     *
+     * @param i the index of the first account.
+     * @param j the index of the second account.
+     */
     private void swap(int i, int j) {
         Account temp = accounts[i];
         accounts[i] = accounts[j];

@@ -1,11 +1,11 @@
+import java.util.Calendar;
+
 /**
  * The Date class represents a valid date object. It provides functionality to check the validity of a date, compare it to other dates, and
  * convert it to a string for representation. This class is immutable once created.
  *
  * @author Digvijay Singh, Arun Felix
  */
-
-import java.util.Calendar;
 public class Date implements Comparable<Date>{
 
     // constants
@@ -54,12 +54,30 @@ public class Date implements Comparable<Date>{
             return null;
         }
     }
+
+    /**
+     * Returns the year component of the date.
+     *
+     * @return The year.
+     */
     public int getyear(){
         return this.year;
     }
+
+    /**
+     * Returns the month component of the date.
+     *
+     * @return The month.
+     */
     public int getmonth(){
         return this.month;
     }
+
+    /**
+     * Returns the day component of the date.
+     *
+     * @return The day.
+     */
     public int getDay(){
         return this.day;
     }
@@ -216,7 +234,6 @@ public class Date implements Comparable<Date>{
     /**  This method returns a string representation of the date object in the "month/day/year" format
      * @return A string representation of the date object.
      */
-
     @Override
     public String toString(){
         return this.month + "/" + this.day + "/" + this.year;
