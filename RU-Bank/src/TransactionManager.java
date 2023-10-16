@@ -22,7 +22,7 @@ public class TransactionManager {
      */
     public TransactionManager() throws FileNotFoundException{
         this.scanner = new Scanner(System.in);
-        // this.scanner = new Scanner(new File("../Testcases/input1.txt"));
+        // this.scanner = new Scanner(new File("../Testcases/input.txt"));
         System.out.println("Transaction Manager is running.");
         accountDatabase = new AccountDatabase();
     }
@@ -35,7 +35,7 @@ public class TransactionManager {
      */
     public void run() throws InterruptedException{
         while(true){
-            // Thread.sleep(100);
+            // Thread.sleep(500);
             decision = scanner.nextLine();
             // System.out.println(decision);
             String[] decisionArray = decision.split("\\s+");

@@ -1,21 +1,20 @@
-Transaction Manager is running.
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Invalid command!
+Account Database is empty!
+Account Database is empty!
+Account Database is empty!
 
-Invalid command!
-Invalid command!
-Invalid command!
-Invalid command!
-Invalid command!
-Invalid command!
-Invalid command!
-Invalid command!
-Invalid command!
-Invalid command!
-Invalid command!
-Invalid command!
-Invalid command!
-Account Database is empty!
-Account Database is empty!
-Account Database is empty!
 Missing data for opening an account.
 Missing data for opening an account.
 Missing data for opening an account.

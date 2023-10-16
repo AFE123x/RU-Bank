@@ -38,7 +38,7 @@ O  MM   Jane Doe 10/1/1995 -1000
 O  MM   Jane Doe 10/1/1995 1999
 O  MM   Jane Doe 10/1/1995 2000
 O  MM   Jane Doe 10/1/1995 2000
-
+*^^^ this duplicate thing works in the debbugger.
 O  C    April March 1/15/1987 300
 O  S	  April March 1/15/1987 1500 1
 O  C    Jason Brown 3/31/1998 1200

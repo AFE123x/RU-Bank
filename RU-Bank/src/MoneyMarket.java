@@ -60,7 +60,8 @@ public class MoneyMarket extends Savings {
         double balance = exists == true ? Double.parseDouble(input[5]) : 0.0;
         if(exists == true && balance <= 0){System.out.println("Initial deposit cannot be 0 or negative."); return null;}
         if(balance < 2000){
-            throw new IllegalArgumentException("Minimum of $2000 to open a Money Market account.");
+            System.out.println("Minimum of $2000 to open a Money Market account.");
+            return null;
         }
         return new MoneyMarket(profile, balance);
         }
