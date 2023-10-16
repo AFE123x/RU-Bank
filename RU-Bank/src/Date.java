@@ -1,11 +1,11 @@
+import java.util.Calendar;
+
 /**
  * The Date class represents a valid date object. It provides functionality to check the validity of a date, compare it to other dates, and
  * convert it to a string for representation. This class is immutable once created.
  *
  * @author Digvijay Singh, Arun Felix
  */
-
-import java.util.Calendar;
 public class Date implements Comparable<Date>{
 
     // constants
