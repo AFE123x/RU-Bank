@@ -2,10 +2,25 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * Represents a manager for executing various transactions on accounts.
+ * It reads transactions from a file and processes them.
+ * Supported transactions include: open, close, deposit, withdraw, print, and others.
+ * 
+ * @author [Your Name or Author's Name]
+ * @version [Version Number, e.g., 1.0]
+ */
 public class TransactionManager {
     private Scanner scanner;
     private String decision;
     private AccountDatabase accountDatabase;
+
+    /**
+     * Constructs a new TransactionManager that initializes the account database
+     * and sets up the scanner to read from an input file.
+     * 
+     * @throws FileNotFoundException if the input file cannot be found.
+     */
     public TransactionManager() throws FileNotFoundException{
         // this.scanner = new Scanner(System.in);
         this.scanner = new Scanner(new File("../Testcases/input.txt"));
@@ -13,6 +28,12 @@ public class TransactionManager {
         accountDatabase = new AccountDatabase();
     }
 
+      /**
+     * Continuously reads and processes transactions from the input file.
+     * For each transaction, it sleeps for a second and then proceeds.
+     * 
+     * @throws InterruptedException if the thread sleep is interrupted.
+     */
     public void run() throws InterruptedException{
         while(true){
             Thread.sleep(1000);
@@ -53,6 +74,13 @@ public class TransactionManager {
 
         }
     }
+    /**
+     * Parses the transaction input to create the appropriate account type.
+     * This method supports creating accounts of types: Checking, CollegeChecking, Savings, MoneyMarket.
+     * 
+     * @param input an array of strings representing the transaction data.
+     * @return the created account or null if the transaction data is invalid.
+     */
     private Account parse(String[] input) {
         Account account;
         try {

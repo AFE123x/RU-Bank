@@ -4,7 +4,6 @@
  * 
  * @author Digvijay Singh, Arun Felix
  */
-
 public class Profile implements Comparable<Profile> {
     
     private String fname; // First name of the profile holder
