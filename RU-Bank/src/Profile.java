@@ -84,7 +84,6 @@ public class Profile implements Comparable<Profile> {
      * @return Currently returns 0.
      */
     @Override
-    //last name, first name and dob.
     public int compareTo(Profile profile) {
         int firstcompare = this.lname.compareTo(profile.getLname());
         if(firstcompare != 0){
