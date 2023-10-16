@@ -91,7 +91,7 @@ public class AccountDatabase {
         return true;
     } //add a new account
     private Boolean typecheck(Account A, Account B){
-        System.out.println("A:" + A.GetType() + ", B:" + B.GetType());
+        // System.out.println("A:" + A.GetType() + ", B:" + B.GetType());
         boolean condition1 = A.GetType().equals("C") && B.GetType().equals("CC");
         boolean condition2 = A.GetType().equals("CC") && B.GetType().equals("C");
         boolean condition3 = A.GetType().equals(B.GetType());

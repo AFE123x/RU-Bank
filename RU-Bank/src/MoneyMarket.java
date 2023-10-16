@@ -55,11 +55,11 @@ public class MoneyMarket extends Savings {
         if(profile == null){
             throw new IllegalArgumentException();
         }
-        Double balance;
-            balance = Double.parseDouble(input[5]);
+        Double balance = !input[0].equals("C") ? Double.parseDouble(input[5]) : null;
+        if(balance != null && balance <= 0){System.out.println("Initial deposit cannot be 0 or negative."); return null;};
 
         if(balance < 2000){
-            throw new IllegalArgumentException("Balance is less than minimum required");
+            throw new IllegalArgumentException("Minimum of $2000 to open a Money Market account.");
         }
         return new MoneyMarket(profile, balance);
         }
@@ -102,6 +102,9 @@ public class MoneyMarket extends Savings {
      */
     @Override
     public String toString() {
-        return "MoneyMarket { holder: " + holder + ", balance: " + balance + ", withdrawals: " + withdrawal + ", isLoyal: " + isLoyal + " }";
+        //Money Market::Savings::Roy Brooks 10/31/1979::Balance $2,909.10::is loyal::withdrawal: 0
+        //Money Market::Savings::April March 1/15/1987::Balance $2,500.00::is loyal::withdrawal: 0
+        String royalty = isLoyal ? "::is loyal" : "";
+        return "Money Market::Savings::" + holder + " " + holder.getDob().toString() + "::Balance $" + balance + "" + royalty + "::withdrawal: " + withdrawal;
     }
 }

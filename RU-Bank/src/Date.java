@@ -126,22 +126,27 @@ public class Date implements Comparable<Date>{
      * @return true if the age derived from the date is between 16 to 24, inclusive; 
      *         false otherwise. 
      */
-    public boolean checkCollegeCheckingValidity(){
-
+    public boolean checkCollegeCheckingValidity() {
         Calendar currCalendar = Calendar.getInstance();
         int currentYear = currCalendar.get(Calendar.YEAR);
-        int age  = currentYear - year;
-        if (month > currCalendar.get(Calendar.MONTH) + 1 || 
-        (month == currCalendar.get(Calendar.MONTH) + 1 && day > currCalendar.get(Calendar.DAY_OF_MONTH))) {
+        int age = currentYear - year;
+    
+        if (month > currCalendar.get(Calendar.MONTH) + 1 ||
+            (month == currCalendar.get(Calendar.MONTH) + 1 && day > currCalendar.get(Calendar.DAY_OF_MONTH))) {
             age--;
         }
-        
-        if (age > 24 || age < 16) {
-            System.out.println("DOB invalid for College Checking account: Age must be between 16 to 24.");
+        // System.out.println(age);
+        if (age >= 24) {
+            System.out.printf("DOB invalid: %s over 24\n", toString());
+            return false;
+        } else if (age < 16) {
+            System.out.printf("DOB invalid: %s under 16.\n", toString());
             return false;
         }
+    
         return true;
     }
+    
 
     
 

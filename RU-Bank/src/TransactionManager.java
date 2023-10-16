@@ -23,7 +23,7 @@ public class TransactionManager {
      */
     public TransactionManager() throws FileNotFoundException{
         // this.scanner = new Scanner(System.in);
-        this.scanner = new Scanner(new File("../Testcases/input.txt"));
+        this.scanner = new Scanner(new File("../Testcases/input1.txt"));
         System.out.println("Transaction Manager is running.");
         accountDatabase = new AccountDatabase();
     }
@@ -36,9 +36,9 @@ public class TransactionManager {
      */
     public void run() throws InterruptedException{
         while(true){
-            Thread.sleep(100);
+            // Thread.sleep(100);
             decision = scanner.nextLine();
-            System.out.println(decision);
+            // System.out.println(decision);
             String[] decisionArray = decision.split("\\s+");
 
             switch(decisionArray[0]){
@@ -56,6 +56,7 @@ public class TransactionManager {
                     break;
                 case "P":
                     accountDatabase.printSorted();
+                    break;
                 case "PI":
                     accountDatabase.printFeesAndInterests();
                     break;
@@ -115,7 +116,7 @@ public class TransactionManager {
             }
             return null;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
             return null;
         } catch (NullPointerException e){
             System.out.println(e.getMessage());
