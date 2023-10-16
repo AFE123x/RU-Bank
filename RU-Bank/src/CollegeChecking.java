@@ -1,24 +1,53 @@
+/**
+ * Represents a College Checking account type which extends the base Checking class.
+ * The College Checking account has an associated interest rate and fee, 
+ * as well as a campus association for the account holder.
+ *
+ * @author Arun Felix, Digvijay Singh
+ */
 public class CollegeChecking extends Checking {
-    // all constants
+
+    /** Constant interest rate for the College Checking account */
     private static final double INTEREST_RATE = 0.01;
+
+    /** Constant fee for the College Checking account */
     private static final double FEE = 0.0;
-    
+
+    /**
+     * Enum representing various campuses.
+     */
     private enum Campus {
         NEW_BRUNSWICK("0", "New Brunswick"),
         NEWARK("1", "Newark"),
         CAMDEN("2", "Camden");
+        /** Value associated with the campus */
         private final String value;
+        /** Name of the campus */
         private final String name;
 
+        /**
+         * Constructor for Campus enum.
+         * 
+         * @param value the associated value of the campus
+         * @param name the name of the campus
+         */
         Campus(String value, String name) {
             this.value = value;
             this.name = name;
         }
     }
     //0 – New Brunswick, 1 – Newark, 2 – Camden
-    
+
+     /** Variable storing the associated campus for the account */
     private Campus campus;
 
+    /**
+     * Constructs a new College Checking account.
+     * 
+     * @param holder profile of the account holder
+     * @param balance initial balance of the account
+     * @param campusCode code representing the associated campus
+     */
     public CollegeChecking(Profile holder, double balance, String campusCode) {
         super(holder, balance);
         switch(campusCode){
@@ -36,6 +65,20 @@ public class CollegeChecking extends Checking {
                 break;
         }
     }
+
+    /**
+     * Creates and returns a new CollegeChecking instance based on the provided input data.
+     * The input array is expected to contain account-related data, such as holder details, balance, and campus code.
+     * If any input data is missing or invalid, this method may return null or throw an exception.
+     *
+     * @param input An array of strings containing account-related data. 
+     *              The first element is expected to be an account type identifier ("C" for CollegeChecking).
+     *              Subsequent elements are expected to contain profile details, balance, and campus code.
+     * @return A new CollegeChecking instance constructed from the input data, or null if input data is invalid.
+     * @throws NumberFormatException If there's an error in parsing the balance from the input data.
+     * @throws IndexOutOfBoundsException If the input data array is shorter than expected.
+     * @throws IllegalArgumentException If the provided initial deposit is zero or negative.
+     */
     public static CollegeChecking makeCollegeChecking(String [] input) throws NumberFormatException, IndexOutOfBoundsException{
             Profile profile = Profile.makeProfile(input);
             if(profile == null){
@@ -51,20 +94,41 @@ public class CollegeChecking extends Checking {
             return new CollegeChecking(profile, tempbalance, tempcampusCode);
     }
 
+    /**
+     * Returns the monthly interest added to the account.
+     * 
+     * @return the balance, or the total amount of money in the account after the balance has been added
+     */
     @Override
     public double monthlyInterest() {
         return balance * (INTEREST_RATE/12);
     }
 
+    /**
+     * Returns the monthly fee for the account.
+     * 
+     * @return a double representing fee of the account
+     */
     @Override
     public double monthlyFee() {
         return FEE;
     }
+
+    /**
+     * Returns the type of the account.
+     * 
+     * @return a string representing the type of the account
+     */
     public String GetType(){
         return "CC";
     }
+    
     //College Checking::Roy Brooks 10/31/1999::Balance $2,909.10::NEWARK
-    //TO DO
+    /**
+     * Returns a string representation of the College Checking account.
+     * 
+     * @return a string representing the College Checking account
+     */
     public String toString() {
         String temp =  "College Checking::" + holder + "::Balance $" + balance;
         return temp;

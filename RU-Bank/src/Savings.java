@@ -1,3 +1,12 @@
+/**
+ * Represents a Savings account type which extends the base Account class.
+ * The Savings account has properties that determine if the account holder 
+ * is loyal, the interest rates for the savings account, a bonus interest rate 
+ * for loyal customers, a monthly fee for balances less than the minimum 
+ * balance, and the minimum balance required to avoid a monthly fee.
+ *
+ * @author Digvijay Singh, Arun Felix
+ */
 public class Savings extends Account{
 
     /** Represents if the account holder has loyal customer status */
@@ -27,10 +36,9 @@ public class Savings extends Account{
         this.isLoyal = isLoyal;
     }
 
-//O S     april march 1/15/1987 1500 1 
+ 
     public static Savings makeSavings(String [] input) throws NumberFormatException, IndexOutOfBoundsException{
         
-        //toDo
         Profile profile = Profile.makeProfile(input);
         if(profile == null){throw new IllegalArgumentException();}
         Double balance;
@@ -58,9 +66,13 @@ public class Savings extends Account{
     public double monthlyFee() {
         return balance >= MIN_BALANCE_REQUIRED ? 0 : FEE;     
     }
+
+    
     public String GetType(){
         return "S";
     }
+
+    
     /**
     * Retrieves the loyalty bonus associated with the Savings account.
     * 

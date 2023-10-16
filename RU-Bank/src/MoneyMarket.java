@@ -1,5 +1,6 @@
 /**
  * Represents a Money Market account.
+ * @author Arun Felix, Digvijay Singh
  */
 public class MoneyMarket extends Savings {
     /** Tracks the number of withdrawals made */

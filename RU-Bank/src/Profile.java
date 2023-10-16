@@ -40,7 +40,6 @@ public class Profile implements Comparable<Profile> {
             }else{
             throw new IllegalArgumentException();
             }
-            return new Profile(input[2], input[3], dob);
         } catch (Exception e) {
             return null;
         }
