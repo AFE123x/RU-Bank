@@ -88,12 +88,13 @@ public class CollegeChecking extends Checking {
             return null;
             }
             
-            double tempbalance = !input[0].equals("C") ? Double.parseDouble(input[5]) : null;
+            double tempbalance = input[0].equals("C") == false? Double.parseDouble(input[5]) : null;
             String tempcampusCode = input[0].equals("O") ? input[6] : null;
             if(tempbalance <= 0){throw new IllegalArgumentException("Initial deposit cannot be 0 or negative.");}
-            return new CollegeChecking(profile, tempbalance, tempcampusCode);
+            int jahr = Integer.parseInt(input[6]);
+            if(jahr < 0 && jahr > 2){System.out.println("Invalid campus code."); return null;}
+            return  new CollegeChecking(profile, tempbalance, tempcampusCode);
     }
-
     /**
      * Returns the monthly interest added to the account.
      * 

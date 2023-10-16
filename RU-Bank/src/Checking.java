@@ -34,10 +34,11 @@ public class Checking extends Account {
      */
     public static Checking makeChecking(String [] input) throws NumberFormatException, IndexOutOfBoundsException, NullPointerException{
             Profile profile = Profile.makeProfile(input);
-            Boolean exists = !input[0].equals("C") ? true : false;
-            double balance = exists ? Double.parseDouble(input[5]) : null;
-            
-            if(balance <= 0){System.out.println("Initial deposit cannot be 0 or negative.");}
+            Boolean exists = input[0].equals("C") ? false : true;
+            // System.out.println(exists);
+            double balance = exists == true ? Double.parseDouble(input[5]) : 0.0;
+
+            if(balance <= 0 && exists == true){System.out.println("Initial deposit cannot be 0 or negative.");}
             return (!exists || balance > 0 )? new Checking(profile,balance) : null;
     }
 

@@ -32,16 +32,12 @@ public class Profile implements Comparable<Profile> {
      * @return A Profile object or null if the input is not valid.
      */
     public static Profile makeProfile(String[] input) {
-        try {
             Date dob = Date.makeDate(input[4]);
             if (dob.isValid()){
             return new Profile(input[2], input[3], dob);
             }else{
             throw new IllegalArgumentException();
             }
-        } catch (Exception e) {
-            return null;
-        }
     }
 
     /**
@@ -95,4 +91,17 @@ public class Profile implements Comparable<Profile> {
         }
         return this.dob.compareTo(profile.dob);
     }
+    public boolean equals(Object obj) {
+        if(obj == null){
+            return false;
+        }
+        if(obj instanceof Profile){
+            Profile temp = (Profile)obj;
+            return this.compareTo(temp) == 0;
+        }
+        return false;
+    }
+    // public boolean equals(Profile B){
+    //     return this.compareTo(B) == 0;
+    // }
 }
