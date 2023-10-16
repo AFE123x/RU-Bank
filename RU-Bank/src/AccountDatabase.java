@@ -5,7 +5,6 @@
  * 
  * @author Arun Felix, Digvijay Singh
  */
-
 public class AccountDatabase {
 
     /** Array to store the accounts. */
