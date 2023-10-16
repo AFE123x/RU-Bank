@@ -22,8 +22,8 @@ public class TransactionManager {
      * @throws FileNotFoundException if the input file cannot be found.
      */
     public TransactionManager() throws FileNotFoundException{
-        // this.scanner = new Scanner(System.in);
-        this.scanner = new Scanner(new File("../Testcases/input1.txt"));
+        this.scanner = new Scanner(System.in);
+        // this.scanner = new Scanner(new File("../Testcases/input1.txt"));
         System.out.println("Transaction Manager is running.");
         accountDatabase = new AccountDatabase();
     }

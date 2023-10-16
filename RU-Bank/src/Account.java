@@ -52,6 +52,15 @@ public abstract class Account implements Comparable<Account> {
     public void deposit(double amount){
         balance += amount;
     }
+    public void withdraw(double amount) {
+        if(this.balance - amount > 0){
+            balance -= amount;
+        }
+        else{
+            System.out.printf("%s(%s) Withdraw - insufficient fund.",getProfile().toString(),GetType());
+        }
+       
+    }
 
     /**
      * Retrieves the current balance of this account.

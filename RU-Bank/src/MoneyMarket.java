@@ -55,9 +55,10 @@ public class MoneyMarket extends Savings {
         if(profile == null){
             throw new IllegalArgumentException();
         }
-        Double balance = !input[0].equals("C") ? Double.parseDouble(input[5]) : null;
-        if(balance != null && balance <= 0){System.out.println("Initial deposit cannot be 0 or negative."); return null;};
-
+        Boolean exists = input[0].equals("C") ? false : true;
+            // System.out.println(exists);
+        double balance = exists == true ? Double.parseDouble(input[5]) : 0.0;
+        if(exists == true && balance <= 0){System.out.println("Initial deposit cannot be 0 or negative."); return null;}
         if(balance < 2000){
             throw new IllegalArgumentException("Minimum of $2000 to open a Money Market account.");
         }
@@ -85,8 +86,14 @@ public class MoneyMarket extends Savings {
      * @param amount The amount to be withdrawn.
      */
     public void withdraw(double amount) {
-        balance -= amount;
-        withdrawal++;
+        if(this.balance - amount > 0){
+            balance -= amount;
+            withdrawal++;
+        }
+        else{
+            System.out.printf("%s(CC) Withdraw - insufficient fund.",getProfile().toString(),GetType());
+        }
+       
     }
 
     /** Returns the type of the Account

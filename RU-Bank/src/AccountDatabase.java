@@ -108,22 +108,38 @@ public class AccountDatabase {
             if(account.equals(accounts[i])){
                 accounts[i] = null;
                 numAcct--;
+                // Tprintarray();
                 shiftLeft(i);
+                // Tprintarray();
+                System.out.printf("%s(%s) has been closed.\n",account.getProfile().toString(),account.GetType());
                 return true;
             }
         }
+        System.out.printf("%s(%s) is not in the database.\n",account.getProfile().toString(),account.GetType());
         }
         return false;
         
     } //remove the given account
-
+    private void Tprintarray(){
+        System.out.println("Troubleshooting array");
+        for(int i = 0; i < accounts.length; i++){
+            if(accounts[i] == null){
+                System.out.print("|null");
+            }
+            else{
+                System.out.print("|a");
+            }
+        }
+        System.out.println("|");
+        
+    }
     /**
      * Shifts contents of the array to the left.
      * @param index
      */
     private void shiftLeft(int index) {
         if (index >= 0 && index < numAcct) {
-            for (int i = index; i < numAcct - 1; i++) {
+            for (int i = index; i < numAcct + 1; i++) {
                 accounts[i] = accounts[i + 1];
             }
             accounts[numAcct - 1] = null;
@@ -133,9 +149,7 @@ public class AccountDatabase {
         if(account != null){
             for(int i = 0; i < numAcct; i++){
                 if(account.equals(accounts[i])){
-                    if(accounts[i].getbalance() > 0){
-
-                    }
+                    accounts[i].withdraw(account.getbalance());
                 }
             }
         }

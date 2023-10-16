@@ -41,10 +41,12 @@ public class Savings extends Account{
         
         Profile profile = Profile.makeProfile(input);
         if(profile == null){throw new IllegalArgumentException();}
-        Double balance;
         Boolean isLoyal;
-            balance = input[0].equals("O") ? Double.parseDouble(input[5]) : null;
-            if(balance != null && balance <= 0){System.out.println("Initial deposit cannot be 0 or negative."); return null;};
+            Boolean exists = input[0].equals("C") ? false : true;
+            // System.out.println(exists);
+            double balance = exists? Double.parseDouble(input[5]) : 0.0;
+            // System.out.println(exists);
+            if(exists == true && balance <= 0){System.out.println("Initial deposit cannot be 0 or negative."); return null;};
             isLoyal = input[0].equals("O") ? Integer.parseInt(input[6]) == 1 : null;
             return new Savings(profile, balance, isLoyal);
 
