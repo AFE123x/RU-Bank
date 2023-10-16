@@ -27,10 +27,9 @@ public class Savings extends Account{
         this.isLoyal = isLoyal;
     }
 
-//O S     april march 1/15/1987 1500 1 
+ 
     public static Savings makeSavings(String [] input) throws NumberFormatException, IndexOutOfBoundsException{
         
-        //toDo
         Profile profile = Profile.makeProfile(input);
         if(profile == null){throw new IllegalArgumentException();}
         Double balance;
@@ -58,9 +57,13 @@ public class Savings extends Account{
     public double monthlyFee() {
         return balance >= MIN_BALANCE_REQUIRED ? 0 : FEE;     
     }
+
+    
     public String GetType(){
         return "S";
     }
+
+    
     /**
     * Retrieves the loyalty bonus associated with the Savings account.
     * 
