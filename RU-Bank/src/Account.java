@@ -2,6 +2,7 @@
  * Represents an abstract account with basic functionalities.
  * This class provides a foundation for different types of bank accounts.
  * Subclasses should provide implementations for monthly interest and monthly fee calculations.
+ * @author Arun Felix, Digvijay Singh
  */
 public abstract class Account implements Comparable<Account> {
     
