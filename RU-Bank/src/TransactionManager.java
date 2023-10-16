@@ -15,7 +15,7 @@ public class TransactionManager {
 
     public void run() throws InterruptedException{
         while(true){
-            Thread.sleep(1000);
+            Thread.sleep(100);
             decision = scanner.nextLine();
             System.out.println(decision);
             String[] decisionArray = decision.split("\\s+");
@@ -77,7 +77,14 @@ public class TransactionManager {
             System.out.println("Not a valid amount.");
             return null;
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Missing data for opening an account.");
+            switch(input[0]){
+                case "C":
+                    System.out.println("Missing data for closing an account.");
+                    break;
+                default:
+                    System.out.println("Missing data for opening an account.");
+                    break;
+            }
             return null;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -87,7 +94,4 @@ public class TransactionManager {
             return null;
         }
     }
-
-
-
 }
