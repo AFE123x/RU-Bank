@@ -57,7 +57,7 @@ public abstract class Account implements Comparable<Account> {
             balance -= amount;
         }
         else{
-            System.out.printf("%s(%s) Withdraw - insufficient fund.",getProfile().toString(),GetType());
+            System.out.printf("%s(%s) Withdraw - insufficient fund.\n",getProfile().toString(),GetType());
         }
        
     }
@@ -87,6 +87,7 @@ public abstract class Account implements Comparable<Account> {
         return compare;
         
     }
+    
 
     /**
      * Checks whether this account is equal to another object.
@@ -98,8 +99,18 @@ public abstract class Account implements Comparable<Account> {
     public boolean equals(Object obj) {
         if(obj instanceof Account){
             Account temp = (Account)obj;
+            if(temp.getProfile().compareTo(this.getProfile()) == 0){
+                return typecheck(this, temp);
+            }
             return this.compareTo(temp) == 0;
         }
         return false;
+    }
+    private Boolean typecheck(Account A, Account B){
+        // System.out.println("A:" + A.GetType() + ", B:" + B.GetType());
+        boolean condition1 = A.GetType().equals("C") && B.GetType().equals("CC");
+        boolean condition2 = A.GetType().equals("CC") && B.GetType().equals("C");
+        boolean condition3 = A.GetType().equals(B.GetType());
+        return condition1 || condition2 || condition3;
     }
 }

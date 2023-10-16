@@ -84,17 +84,23 @@ public class CollegeChecking extends Checking {
             if(profile == null){
                 return null;
             }
+            
             if(!profile.getDob().checkCollegeCheckingValidity()){
+                
             return null;
             }
             Boolean exists = input[0].equals("C") ? false : true;
             // System.out.println(exists);
-            double tempbalance= exists == true ? Double.parseDouble(input[5]) : 0.0;
-            // double tempbalance = input[0].equals("C") == false? Double.parseDouble(input[5]) : null;
+            double tempbalance = exists == true ? Double.parseDouble(input[5]) : 0.0;
             String tempcampusCode = input[0].equals("O") ? input[6] : null;
             if(exists == true && tempbalance <= 0){System.out.println("Initial deposit cannot be 0 or negative."); return null;}
-            int jahr = Integer.parseInt(input[6]);
+            if(!input[0].equals("C")){
+                int jahr = Integer.parseInt(input[6]);
             if(jahr < 0 || jahr > 2){System.out.println("Invalid campus code."); return null;}
+            }
+            else{
+                tempcampusCode = "_";
+            }
             return  new CollegeChecking(profile, tempbalance, tempcampusCode);
     }
     /**

@@ -1,5 +1,3 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
@@ -17,10 +15,8 @@ public class TransactionManager {
     /**
      * Constructs a new TransactionManager that initializes the account database
      * and sets up the scanner to read from an input file.
-     * 
-     * @throws FileNotFoundException if the input file cannot be found.
      */
-    public TransactionManager() throws FileNotFoundException{
+    public TransactionManager(){
         this.scanner = new Scanner(System.in);
         // this.scanner = new Scanner(new File("../Testcases/input.txt"));
         System.out.println("Transaction Manager is running.");
@@ -35,9 +31,8 @@ public class TransactionManager {
      */
     public void run() throws InterruptedException{
         while(true){
-            // Thread.sleep(500);
+
             decision = scanner.nextLine();
-            // System.out.println(decision);
             String[] decisionArray = decision.split("\\s+");
 
             switch(decisionArray[0]){
@@ -63,6 +58,7 @@ public class TransactionManager {
                     accountDatabase.printUpdatedBalances();
                     break;
                 case "Q":
+                System.out.println();
                     return;
                 case "":
                     break;

@@ -56,17 +56,6 @@ public class AccountDatabase {
     public boolean contains(Account account){
         return find(account) != -1;
     }
-    private int find(Profile profile){
-        for(int i = 0; i < numAcct; i++){
-            if(accounts[i].getProfile().equals(profile)){
-                return i;
-            }
-        }
-        return -1;
-    }
-    private boolean contains(Profile profile){
-        return find(profile) != -1;
-    }
 
     /**
      * Given a valid account, the account will be added to database.
@@ -77,11 +66,9 @@ public class AccountDatabase {
         if(account == null){
             return false;
         }
-        else if(contains(account.getProfile())){
-            if(typecheck(account, accounts[find(account.getProfile())])){
+        else if(contains(account)){
             System.out.printf("%s(%s) is already in the database.\n",account.getProfile().toString(),account.GetType());   
             return false;
-        }
         }
         accounts[numAcct++] = account;
         if(numAcct >= accounts.length){
@@ -90,13 +77,7 @@ public class AccountDatabase {
         System.out.printf("%s(%s) opened.\n",account.getProfile().toString(),account.GetType());
         return true;
     } //add a new account
-    private Boolean typecheck(Account A, Account B){
-        // System.out.println("A:" + A.GetType() + ", B:" + B.GetType());
-        boolean condition1 = A.GetType().equals("C") && B.GetType().equals("CC");
-        boolean condition2 = A.GetType().equals("CC") && B.GetType().equals("C");
-        boolean condition3 = A.GetType().equals(B.GetType());
-        return condition1 || condition2 || condition3;
-    }
+
     /**
      * Will close the account, delete account from the database.
      * @param account
@@ -144,6 +125,14 @@ public class AccountDatabase {
             }
             accounts[numAcct - 1] = null;
         }
+        numAcct = newAcct();
+    }
+    private int newAcct(){
+        int i;
+        for(i = 0; i < accounts.length && accounts[i] != null; i++){
+            i++;
+        }
+        return i - 1;
     }
     public boolean withdraw(Account account){
         if(account != null){
@@ -161,6 +150,9 @@ public class AccountDatabase {
      * @param account the account to which the deposit is made.
      */
     public void deposit(Account account){
+        if(account == null){
+            return;
+        }
         for(int i = 0; i < numAcct; i++){
             if(account.equals(accounts[i])){
                 accounts[i].deposit(account.getbalance());
@@ -176,6 +168,8 @@ public class AccountDatabase {
             System.out.println("Account Database is empty!");
             return;
         }
+        Tprintarray();
+        System.out.println("quicksort(0," + (numAcct-1) + ")");
         quicksort(0, numAcct - 1);
         System.out.println("*Accounts sorted by account type and profile.");
         for(int i = 0; i < numAcct; i++){
@@ -192,7 +186,11 @@ public class AccountDatabase {
             System.out.println("Account Database is empty!");
             return;
         }
-
+        quicksort(0, numAcct - 1);
+        for(int i = 0; i < numAcct; i++){
+            System.out.println(accounts[i].toString() + "::fee $" + accounts[i].monthlyFee() + "::monthly interest $" + accounts[i].monthlyInterest());
+        }
+        System.out.println("*end of list.");
     } 
 
     /**

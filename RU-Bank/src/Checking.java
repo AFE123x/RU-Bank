@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 /**
  * Represents a checking account with associated functionalities.
  * Checking accounts may earn interest and may have associated fees.
@@ -57,8 +59,11 @@ public class Checking extends Account {
      * @return The monthly interest amount.
      */
     @Override
-    public double monthlyInterest() { 
-        return balance * (INTEREST_RATE/12.0);
+    public double monthlyInterest() {
+        double result = balance * (INTEREST_RATE / 12.0);
+        DecimalFormat df = new DecimalFormat("#.00");
+        String formattedResult = df.format(result);
+        return Double.parseDouble(formattedResult);
     }
 
      /**
@@ -68,7 +73,7 @@ public class Checking extends Account {
      */
     @Override
     public double monthlyFee() {
-        if(balance <= 1000){
+        if(balance >= 1000){
             return 0;
         }
         return FEE;
