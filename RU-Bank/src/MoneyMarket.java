@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 /**
  * Represents a Money Market account.
  * @author Arun Felix, Digvijay Singh
@@ -37,7 +39,11 @@ public class MoneyMarket extends Savings {
      */
     @Override
     public double monthlyInterest() {
-        return balance * ((INTEREST_RATE_MONEY_MARKET/12.0) + (isLoyal ? LOYALTY_BONUS : 0));
+        double unroundedInterest = balance * ((INTEREST_RATE_MONEY_MARKET/12.0) + (isLoyal ? LOYALTY_BONUS : 0));
+            DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+    String formattedInterest = decimalFormat.format(unroundedInterest);
+    
+    return Double.parseDouble(formattedInterest);
     }
 
     /**
@@ -95,6 +101,11 @@ public class MoneyMarket extends Savings {
             System.out.printf("%s(CC) Withdraw - insufficient fund.",getProfile().toString(),GetType());
         }
        
+    }
+    @Override
+    public void applyWithdraw() {
+        balance -= monthlyFee() + monthlyInterest();
+        withdrawal = 0;
     }
 
     /** Returns the type of the Account

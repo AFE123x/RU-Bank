@@ -127,6 +127,10 @@ public class AccountDatabase {
         }
         numAcct = newAcct();
     }
+     /**
+     * This will assign the Account index to the last non null account in array to prevent null pointer exception
+     * @return new array index containing last account. 
+     */
     private int newAcct(){
         int i;
         for(i = 0; i < accounts.length && accounts[i] != null; i++){
@@ -134,11 +138,17 @@ public class AccountDatabase {
         }
         return i - 1;
     }
+    /**
+     * Withdraws money from accounts.
+     * @param account
+     * @return true if withdrawn successfully, false otherwise. 
+     */
     public boolean withdraw(Account account){
         if(account != null){
             for(int i = 0; i < numAcct; i++){
                 if(account.equals(accounts[i])){
                     accounts[i].withdraw(account.getbalance());
+                    return true;
                 }
             }
         }
@@ -179,7 +189,7 @@ public class AccountDatabase {
     } //sort by account type and profile
 
      /**
-     * Prints the interests and fees for each account.
+     * Prints the fees and interest rates with the accounts
      */
     public void printFeesAndInterests(){
         if(numAcct < 1){
@@ -201,6 +211,10 @@ public class AccountDatabase {
             System.out.println("Account Database is empty!");
             return;
         }
+        for(int i = 0; i < numAcct; i++){
+            accounts[i].withdraw(accounts[i].monthlyFee()+accounts[i].monthlyInterest());
+        }
+        printFeesAndInterests();
 
     }
 

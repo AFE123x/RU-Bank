@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 /**
@@ -16,20 +17,21 @@ public class TransactionManager {
      * Constructs a new TransactionManager that initializes the account database
      * and sets up the scanner to read from an input file.
      */
-    public TransactionManager(){
+    public TransactionManager() {
         this.scanner = new Scanner(System.in);
         // this.scanner = new Scanner(new File("../Testcases/input.txt"));
         System.out.println("Transaction Manager is running.");
         accountDatabase = new AccountDatabase();
     }
 
-      /**
-     * Continuously reads and processes transactions from the input file.
-     * For each transaction, it sleeps for a second and then proceeds.
-     * 
-     * @throws InterruptedException if the thread sleep is interrupted.
+    /**
+     * Continuously processes user commands to manage accounts in the database.
+     * This method runs a loop that continuously takes user input and processes it based 
+     * on the provided command. It supports commands to open accounts, close accounts,
+     * deposit, withdraw, print account information, and more. The loop continues 
+     * until the user chooses to exit by entering the "Q" command.
      */
-    public void run() throws InterruptedException{
+    public void run(){
         while(true){
 
             decision = scanner.nextLine();

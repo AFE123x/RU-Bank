@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 /**
  * Represents a College Checking account type which extends the base Checking class.
  * The College Checking account has an associated interest rate and fee, 
@@ -77,7 +79,6 @@ public class CollegeChecking extends Checking {
      * @return A new CollegeChecking instance constructed from the input data, or null if input data is invalid.
      * @throws NumberFormatException If there's an error in parsing the balance from the input data.
      * @throws IndexOutOfBoundsException If the input data array is shorter than expected.
-     * @throws IllegalArgumentException If the provided initial deposit is zero or negative.
      */
     public static CollegeChecking makeCollegeChecking(String [] input) throws NumberFormatException, IndexOutOfBoundsException{
             Profile profile = Profile.makeProfile(input);
@@ -110,7 +111,12 @@ public class CollegeChecking extends Checking {
      */
     @Override
     public double monthlyInterest() {
-        return balance * (INTEREST_RATE/12);
+        double unroundedInterest = balance * (INTEREST_RATE/12);
+    
+    DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+    String formattedInterest = decimalFormat.format(unroundedInterest);
+    
+    return Double.parseDouble(formattedInterest);
     }
 
     /**
@@ -128,8 +134,16 @@ public class CollegeChecking extends Checking {
      * 
      * @return a string representing the type of the account
      */
+    
     public String GetType(){
         return "CC";
+    }
+      /**
+     * withdraw the fees from account. 
+     */
+    @Override
+    public void applyWithdraw() {
+        balance -= monthlyFee() + monthlyInterest();
     }
     
     //College Checking::Roy Brooks 10/31/1999::Balance $2,909.10::NEWARK

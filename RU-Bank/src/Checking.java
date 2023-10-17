@@ -88,4 +88,9 @@ public class Checking extends Account {
     public String toString() {
         return "Checking::" + holder + "::Balance $" + balance;
         }
+
+    @Override
+    public void applyWithdraw() {
+        balance -= monthlyFee() + monthlyInterest();
+    }
     }

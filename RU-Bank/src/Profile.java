@@ -91,6 +91,8 @@ public class Profile implements Comparable<Profile> {
         }
         return this.dob.compareTo(profile.dob);
     }
+    
+    @Override
     public boolean equals(Object obj) {
         if(obj == null){
             return false;
@@ -101,7 +103,4 @@ public class Profile implements Comparable<Profile> {
         }
         return false;
     }
-    // public boolean equals(Profile B){
-    //     return this.compareTo(B) == 0;
-    // }
 }

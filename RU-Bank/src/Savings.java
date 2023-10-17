@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 /**
  * Represents a Savings account type which extends the base Account class.
  * The Savings account has properties that determine if the account holder 
@@ -52,15 +54,19 @@ public class Savings extends Account{
 
     }
 
-     /**
-     * Calculates the monthly interest for the Savings account.
-     * @return The monthly interest.
-     */
-    @Override
-    public double monthlyInterest() {
-        return balance * (INTEREST_RATE + (isLoyal ? LOYALTY_BONUS : 0));
-    }
-
+/**
+ * Calculates the monthly interest for the Savings account.
+ * @return The monthly interest rounded to 2 decimal places.
+ */
+@Override
+public double monthlyInterest() {
+    double unroundedInterest = balance * (INTEREST_RATE + (isLoyal ? LOYALTY_BONUS : 0));
+    
+    DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+    String formattedInterest = decimalFormat.format(unroundedInterest);
+    
+    return Double.parseDouble(formattedInterest);
+}
     /**
      * Calculates the monthly fee for the Savings account.
      * @return The monthly fee.
@@ -70,7 +76,9 @@ public class Savings extends Account{
         return balance >= MIN_BALANCE_REQUIRED ? 0 : FEE;     
     }
 
-    
+    /**
+     * @return "S" to specify account type. 
+     */
     public String GetType(){
         return "S";
     }
@@ -100,5 +108,19 @@ public class Savings extends Account{
         }
         
     }
+
+
+     /**
+     * Deducts the monthly fee and interest from the account balance.
+     * The method subtracts the monthly fee and the monthly interest from the account balance
+     * to reflect the changes that occur during a monthly withdrawal operation.
+     * The monthly fee is deducted first, followed by the monthly interest (if applicable).
+     * If the account has a loyalty bonus, the interest will be adjusted accordingly.
+     */
+    @Override
+    public void applyWithdraw() {
+        balance -= monthlyFee() + monthlyInterest();
+    }
+
     
 }
