@@ -38,7 +38,13 @@ public class Savings extends Account{
         this.isLoyal = isLoyal;
     }
 
- 
+    /**
+     * A method that Parses a String array and creates a Savings object.
+     * @param input A string Array containing full name, date of birth, balance and loyalty. Varies based on User operation
+     * @return A Savings object if parsing was successful. null otherwise.
+     * @throws NumberFormatException if the number inputted by client is invalid
+     * @throws IndexOutOfBoundsException if inadequate arguments were provided.
+     */
     public static Savings makeSavings(String [] input) throws NumberFormatException, IndexOutOfBoundsException{
         
         Profile profile = Profile.makeProfile(input);

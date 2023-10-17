@@ -43,6 +43,12 @@ public class Date implements Comparable<Date>{
         this.month = month;
         this.day = day;
     }
+
+    /**
+     * Static function which creates the Date object.
+     * @param input String containing date in MM/DD/YYYY format.
+     * @return Date object assuming parsing succeeds. Null otherwise.
+     */
     public static Date makeDate(String input){
         try {
             String [] dateArray = input.split("/");
@@ -204,10 +210,10 @@ public class Date implements Comparable<Date>{
                 && day == otherDate.day;
     }
 
-    /* This is a helper method to check if the year in the date
-     * is a leap year or not
-     * @param the year of the date as an int
-     * return true if the year is a leap year
+    /**
+     * Checks if year is a leap year
+     * @param year integer
+     * @return true if year is leap, false otherwise.
      */
     private boolean isLeapYear(int year) {
         if (year % QUADRENNIAL != 0) {
@@ -221,9 +227,11 @@ public class Date implements Comparable<Date>{
         return year % QUATERCENTENNIAL == 0;
     }
 
-    /* Compares the current date object to another date object.
-     * @param a date object
-     * @return returns an int -1 if date is less, 0 if the date is equal and 1 if the date is greater
+
+    /**
+     *  Compares two date instances;
+     * @param o Date we can to compare
+     * @return negative number if this date is less than o, positive if greatetr, 0 if equal.
      */
     @Override
     public int compareTo(Date o) {
@@ -285,14 +293,28 @@ public class Date implements Comparable<Date>{
         // 8.4 Age 25 (out of range 16-24)
         testCollegeCheckingValidity(1998, 5, 15, false);
     }
-
+    /**
+     * Test the validity of a Date object by comparing it to an expected result.
+     *
+     * @param year     The year component of the Date.
+     * @param month    The month component of the Date.
+     * @param day      The day component of the Date.
+     * @param expected The expected validity result (true for valid, false for invalid).
+     */
     private static void testDateValidity(int year, int month, int day, boolean expected) {
         Date date = new Date(year, month, day);
         boolean isValid = date.isValid();
         String result = isValid == expected ? "PASSED" : "FAILED";
         System.out.printf("Testing Date: %s Expected: %s Actual: %s Result: %s%n", date, expected, isValid, result);
     }
-
+    /**
+     * Test the validity of a College Checking Date object by comparing it to an expected result.
+     *
+     * @param year     The year component of the College Checking Date.
+     * @param month    The month component of the College Checking Date.
+     * @param day      The day component of the College Checking Date.
+     * @param expected The expected validity result (true for valid, false for invalid).
+     */
     private static void testCollegeCheckingValidity(int year, int month, int day, boolean expected) {
         Date date = new Date(year, month, day);
         boolean isValid = date.checkCollegeCheckingValidity();

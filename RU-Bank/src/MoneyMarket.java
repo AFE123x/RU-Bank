@@ -102,6 +102,10 @@ public class MoneyMarket extends Savings {
         }
        
     }
+
+    /**
+     * Applies the fees to the balance, and resets withdrawal to zero.
+     */
     @Override
     public void applyWithdraw() {
         balance -= monthlyFee() + monthlyInterest();
