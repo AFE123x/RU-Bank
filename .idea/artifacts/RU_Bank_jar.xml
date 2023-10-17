@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="RU-Bank:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/RU_Bank_jar</output-path>
+    <root id="archive" name="RU-Bank.jar">
+      <element id="module-output" name="RU-Bank" />
+    </root>
+  </artifact>
+</component>
