@@ -89,9 +89,7 @@ public class AccountDatabase {
             if(account.equals(accounts[i])){
                 accounts[i] = null;
                 numAcct--;
-                // Tprintarray();
                 shiftLeft(i);
-                // Tprintarray();
                 System.out.printf("%s(%s) has been closed.\n",account.getProfile().toString(),account.GetType());
                 return true;
             }
@@ -101,19 +99,6 @@ public class AccountDatabase {
         return false;
         
     } //remove the given account
-    private void Tprintarray(){
-        System.out.println("Troubleshooting array");
-        for(int i = 0; i < accounts.length; i++){
-            if(accounts[i] == null){
-                System.out.print("|null");
-            }
-            else{
-                System.out.print("|a");
-            }
-        }
-        System.out.println("|");
-        
-    }
     /**
      * Shifts contents of the array to the left.
      * @param index
@@ -166,6 +151,7 @@ public class AccountDatabase {
         for(int i = 0; i < numAcct; i++){
             if(account.equals(accounts[i])){
                 accounts[i].deposit(account.getbalance());
+                System.out.printf("%s(%s) Deposit - balance updated.\n",account.getProfile().toString(),account.GetType());
             }
         }
     }
@@ -178,8 +164,6 @@ public class AccountDatabase {
             System.out.println("Account Database is empty!");
             return;
         }
-        Tprintarray();
-        System.out.println("quicksort(0," + (numAcct-1) + ")");
         quicksort(0, numAcct - 1);
         System.out.println("*Accounts sorted by account type and profile.");
         for(int i = 0; i < numAcct; i++){

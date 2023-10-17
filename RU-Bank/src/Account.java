@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 /**
  * Represents an abstract account with basic functionalities.
  * This class provides a foundation for different types of bank accounts.
@@ -69,7 +71,9 @@ public abstract class Account implements Comparable<Account> {
      * @return The current balance.
      */
     public double getbalance(){
-        return balance;
+        DecimalFormat df = new DecimalFormat("#.00");
+        String formattedResult = df.format(balance);
+        return Double.parseDouble(formattedResult);
     }
 
     /**

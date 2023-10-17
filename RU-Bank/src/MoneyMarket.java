@@ -65,7 +65,7 @@ public class MoneyMarket extends Savings {
             // System.out.println(exists);
         double balance = exists == true ? Double.parseDouble(input[5]) : 0.0;
         if(exists == true && balance <= 0){System.out.println("Initial deposit cannot be 0 or negative."); return null;}
-        if(balance < 2000){
+        if(input[0].equals("O")&& balance < 2000){
             System.out.println("Minimum of $2000 to open a Money Market account.");
             return null;
         }

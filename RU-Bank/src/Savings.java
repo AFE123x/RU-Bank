@@ -55,7 +55,7 @@ public class Savings extends Account{
             double balance = exists? Double.parseDouble(input[5]) : 0.0;
             // System.out.println(exists);
             if(exists == true && balance <= 0){System.out.println("Initial deposit cannot be 0 or negative."); return null;};
-            isLoyal = input[0].equals("O") ? Integer.parseInt(input[6]) == 1 : null;
+            isLoyal = input[0].equals("O") ? Integer.parseInt(input[6]) == 1 : false;
             return new Savings(profile, balance, isLoyal);
 
     }
