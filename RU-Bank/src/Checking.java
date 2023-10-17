@@ -49,6 +49,7 @@ public class Checking extends Account {
      * 
      * @return A string representing the type of the account (e.g., "C" for Checking).
      */
+    @Override
     public String GetType(){
         return "C";
     }
@@ -86,11 +87,11 @@ public class Checking extends Account {
      */
     @Override
     public String toString() {
-        return "Checking::" + holder + "::Balance $" + balance;
+        return "Checking::" + holder + "::Balance $" + getbalance();
         }
 
     @Override
     public void applyWithdraw() {
-        balance -= monthlyFee() + monthlyInterest();
+        balance +=  monthlyInterest() - monthlyFee();
     }
     }

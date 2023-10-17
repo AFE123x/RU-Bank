@@ -134,6 +134,7 @@ public class CollegeChecking extends Checking {
      * 
      * @return a string representing the type of the account
      */
+    @Override
     
     public String GetType(){
         return "CC";
@@ -143,7 +144,7 @@ public class CollegeChecking extends Checking {
      */
     @Override
     public void applyWithdraw() {
-        balance -= monthlyFee() + monthlyInterest();
+        balance +=  monthlyInterest() - monthlyFee();
     }
     
     //College Checking::Roy Brooks 10/31/1999::Balance $2,909.10::NEWARK
@@ -153,7 +154,7 @@ public class CollegeChecking extends Checking {
      * @return a string representing the College Checking account
      */
     public String toString() {
-        String temp =  "College Checking::" + holder + "::Balance $" + balance;
+        String temp =  "College Checking::" + holder + "::Balance $" + getbalance();
         return temp;
         }
     }

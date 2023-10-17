@@ -87,15 +87,25 @@ public class MoneyMarket extends Savings {
         isLoyal = true;
         return 0;
     }
-
+    @Override
+    public void deposit(double amount){
+        balance += amount;
+        if(balance >= 2000){
+            isLoyal = true;
+        }
+    }
     /**
      * Withdraws the specified amount from the Money Market account.
      * @param amount The amount to be withdrawn.
      */
+    @Override
     public void withdraw(double amount) {
         if(this.balance - amount > 0){
             balance -= amount;
             withdrawal++;
+            if(balance < 2000){
+                isLoyal = false;
+            }
         }
         else{
             System.out.printf("%s(CC) Withdraw - insufficient fund.",getProfile().toString(),GetType());
@@ -108,13 +118,20 @@ public class MoneyMarket extends Savings {
      */
     @Override
     public void applyWithdraw() {
-        balance -= monthlyFee() + monthlyInterest();
+        balance +=  monthlyInterest() - monthlyFee();
+        if(balance < 2000){
+            isLoyal = false;
+        }
+        else{
+            isLoyal = true;
+        }
         withdrawal = 0;
     }
 
     /** Returns the type of the Account
      * @returns A string representing the type of the account, in this case "MM"
      */
+    @Override
     public String GetType(){
         return "MM";
     }
@@ -128,6 +145,6 @@ public class MoneyMarket extends Savings {
         //Money Market::Savings::Roy Brooks 10/31/1979::Balance $2,909.10::is loyal::withdrawal: 0
         //Money Market::Savings::April March 1/15/1987::Balance $2,500.00::is loyal::withdrawal: 0
         String royalty = isLoyal ? "::is loyal" : "";
-        return "Money Market::Savings::" + holder + " " + holder.getDob().toString() + "::Balance $" + balance + "" + royalty + "::withdrawal: " + withdrawal;
+        return "Money Market::Savings::" + holder + " " + holder.getDob().toString() + "::Balance $" + getbalance() + "" + royalty + "::withdrawal: " + withdrawal;
     }
 }

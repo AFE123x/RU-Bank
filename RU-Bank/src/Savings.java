@@ -85,11 +85,10 @@ public double monthlyInterest() {
     /**
      * @return "S" to specify account type. 
      */
+    @Override
     public String GetType(){
         return "S";
     }
-
-    
     /**
     * Retrieves the loyalty bonus associated with the Savings account.
     * 
@@ -107,15 +106,13 @@ public double monthlyInterest() {
     public String toString() {
         //Savings::Jane Doe 10/1/1995::Balance $1,000.00
         if(!isLoyal){
-            return "Savings::" + holder + "::Balance $" + balance;
+            return "Savings::" + holder + "::Balance $" + getbalance();
         }
         else{
-            return "Savings::" + holder + "::Balance $" + balance + "::is loyal";
+            return "Savings::" + holder + "::Balance $" + getbalance() + "::is loyal";
         }
         
     }
-
-
      /**
      * Deducts the monthly fee and interest from the account balance.
      * The method subtracts the monthly fee and the monthly interest from the account balance
@@ -125,7 +122,7 @@ public double monthlyInterest() {
      */
     @Override
     public void applyWithdraw() {
-        balance -= monthlyFee() + monthlyInterest();
+        balance += monthlyInterest() -  monthlyFee();
     }
 
     
